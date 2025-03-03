@@ -1,0 +1,28 @@
+<div id="main-wrapper" [ngClass]="{'menu-toggle':toggleVal, 'show':true}" [class.iconhover-toggle]="mouseOvered">
+
+  <!--**** Nav header start ********-->
+  <app-nav-header (sidebarToggle)=sidebarToggle($event)></app-nav-header>
+  <!--******* Nav header end ***********-->
+
+  <!--********** Chat box start ********-->
+  <app-chatbox></app-chatbox>
+  <!--********** Chat box End **********-->
+
+  <!--********** Header start **********-->
+  <app-header></app-header>
+  <!--*********  Header end ************-->
+
+  <!--********* Sidebar start **********-->
+  <app-sidebar (mouseHoverEvent)="iconHoverToggle($event)" />
+  <!--********* Sidebar end **********-->
+
+  <!--******** Content body start *******-->
+  <router-outlet></router-outlet>
+  <!--******** Content body end *********-->
+
+  <!--****** Footer start *************-->
+  @if(currentUrl != '/admin/email-compose' && currentUrl != '/admin/email-inbox'){
+    <app-footer></app-footer>
+  }
+  <!--******* Footer end ***********-->
+</div>

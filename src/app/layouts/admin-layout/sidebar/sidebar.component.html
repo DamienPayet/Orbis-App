@@ -1,0 +1,99 @@
+<div class="deznav" (mouseover)='hoverAdd(true)' (mouseout)="hoverAdd(false)">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+            @for(item of sidebarMenu; track item; let first_i = $first;){
+            @if(item.label){
+            <li class="menu-title" [ngClass]="{'first':first_i}">{{item.label}}</li>
+            }
+            <li [ngClass]="{'mm-active': item.title == activeMenu}">
+                @if(!item.route){
+                    <a 
+                        (click)="handleMenu(item.title)"
+                        [ngClass]="{'has-arrow ai-icon': item.subMenu}" 
+                        href="javascript:void(0)" 
+                        aria-expanded="false"
+                    >
+                        <div *ngIf="item.icon" class="menu-icon" [innerHtml]="item.icon | safeHtmlSvg"></div>
+                        <span class="nav-text ms-2 me-1">{{ item.title }}</span>
+                        @if(item.badge){
+                            <span class="badge badge-sm badge-danger ms-3">New</span>
+                        }
+                    </a>
+                } @else if(item.route){
+                    <a 
+                        (click)="handleMenu(item.title)"
+                        [ngClass]="{'has-arrow ai-icon': item.subMenu}" 
+                        [routerLink]="[item.route]"
+                        aria-expanded="false"
+                    >
+                        <div *ngIf="item.icon" class="menu-icon" [innerHtml]="item.icon | safeHtmlSvg"></div>
+                        <span class="nav-text ms-1">{{ item.title }}</span>
+                        @if(item.badge){
+                            <span class="badge badge-sm badge-danger ms-3">New</span>
+                        }
+                    </a>
+                }
+                @if(item.subMenu){
+                    <ul aria-expanded="false" class="{{item.title == activeMenu ? 'mm-collapse mm-show': 'mm-collapse'}}">
+                        @for(subitem of item?.subMenu; track subitem){
+                        <li [ngClass]="{'mm-active': subitem.title == activeSubMenu}">
+                            @if(subitem.route && !subitem.theme){
+                                <a 
+                                    (click)="handleActiveMenu(subitem.route)" 
+                                    [routerLink]="[subitem.route]"
+                                    [ngClass]="{'mm-active': subitem.title == activeSubMenu}"
+                                >
+                                    {{subitem.title}}
+                                    @if(subitem.subBadge){
+                                        <span class="badge badge-sm badge-danger ms-3">New</span>
+                                    }
+                                </a>
+                            } @else if(!subitem.route && !subitem.theme){
+                                <a 
+                                    class="has-arrow ai-icon"
+                                    [ngClass]="{'mm-active': subitem.title == activeSubMenu}" 
+                                    (click)="handleActiveSubMenu(subitem.title)" 
+                                    href="javascript:void(0)"
+                                    aria-expanded="false"
+                                >
+                                    {{subitem.title}}
+                                    @if(subitem.subBadge){
+                                        <span class="badge badge-sm badge-danger ms-3">New</span>
+                                    }
+                                </a>
+                            } @else if(subitem.route && subitem.theme){
+                                <a 
+                                    [ngClass]="{'mm-active': subitem.theme == elementValue}" 
+                                    (click)="themeMode(subitem.theme)" 
+                                    [routerLink]="[subitem.route]"
+                                >
+                                    {{subitem.title}}
+                                </a>
+                            }
+                            @if(subitem.subsubMenu){
+                                <ul aria-expanded="false" class="{{subitem.title == activeSubMenu ? 'mm-collapse mm-show': 'mm-collapse'}}">
+                                    @for(subSubItem of subitem.subsubMenu; track subSubItem){
+                                    <li>
+                                        <a 
+                                            (click)="handleActiveMenu(subSubItem.route)" 
+                                            [routerLink]="[subSubItem.route]"
+                                            [ngClass]="{'mm-active': subSubItem.title == activeSubSubMenu}"
+                                        >
+                                            {{subSubItem.title}}
+                                        </a>
+                                    </li>
+                                    }
+                                </ul>
+                            }
+                        </li>
+                        }
+                    </ul>
+                }
+            </li>
+            }
+        </ul>
+        <div class="help-desk">
+            <a href="javascript:void(0)" class="btn btn-primary">Help Desk</a>
+        </div>
+    </div>
+</div>
