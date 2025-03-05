@@ -1,0 +1,18 @@
+﻿{
+  "YOUR_AGENCY" : "Votre agence",
+  "LANGUAGE" : "Langue",
+  "DARK_MODE" : "Mode sombre",
+  "SEE_ALL_NOTIFICATION": "Voir toutes les notifications",
+
+  "ERROR_404": "Nous sommes désolés, mais la page que vous recherchez est introuvable.",
+  "BACK_HOMEPAGE": "RETOUR À LA PAGE D'ACCUEIL",
+
+  "DASHBOARD" : "Tableau de bord",
+  "USERS"  : "Utilisateurs",
+  "BILLING" : "Facturation",
+  "VOUCHER" : "Promotion",
+  "AI_SETTINGS" : "Configutation IA",
+  "REPORTING" : "Rapports",
+  "LOGS" : "Journaux",
+  "CONVERSATIONS" : "Conversations"
+}

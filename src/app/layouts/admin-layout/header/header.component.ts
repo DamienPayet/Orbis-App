@@ -1,65 +1,46 @@
 import { Component } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {LanguageSelectorComponent} from '../../../shared/components/language-selector/language-selector.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     NgbModule,
+    LanguageSelectorComponent,
+    TranslatePipe,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'] // Fixed property name
 })
 export class HeaderComponent {
   fullScreenClass: boolean = false;
-  toggleMode: 'dark' | 'light' | undefined;
   localData: string | null = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params: any) => {
-      if (params.theme === 'dark' || params.theme === 'light') {
-        localStorage.setItem("data-theme-version", params.theme);
-      }
-    });
-  }
-
-  ngDoCheck() {
-    this.applyThemeMode();
-  }
-
-  applyThemeMode() {    // Theme mode dark - light
+  constructor() {
     this.localData = localStorage.getItem('data-theme-version');
     if (this.localData) {
       document.body.setAttribute('data-theme-version', this.localData);
+    }else {
+      this.localData = 'dark'
+      localStorage.setItem('data-theme-version',this.localData);
+      document.body.setAttribute('data-theme-version', 'dark');
     }
   }
 
-  chatboxActive() { // Chatbox manage
-    document.getElementById("chatBox")?.classList.add("active");
-  }
-
-  eventSidebarActive() { // Event Sidebar manage
-    const sidebar = document.getElementById("eventSidebar");
-    if (sidebar?.classList.contains('active')) {
-      sidebar.classList.remove('active');
-    } else {
-      sidebar?.classList.add('active');
+  changeDarkMode() {
+    if (this.localData == 'dark') {
+      this.localData = 'light'
+    }else{
+      this.localData = 'dark'
     }
+    localStorage.setItem('data-theme-version',this.localData);
+    document.body.setAttribute('data-theme-version', this.localData);
   }
 
-  themeMode() {     // Theme mode dark - light
-    const elementValue = document.body.getAttribute('data-theme-version');
-    this.localData = localStorage.getItem('data-theme-version');
-
-    this.toggleMode = (elementValue === 'light' && this.localData === 'light') ? 'dark' : 'light';
-
-    localStorage.setItem("data-theme-version", this.toggleMode);
-    document.body.setAttribute('data-theme-version', this.toggleMode);
-  }
 
   openFullscreen() {   // Trigger fullscreen
     const docElm = document.documentElement as HTMLElement & {

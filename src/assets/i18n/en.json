@@ -1,0 +1,18 @@
+﻿{
+  "YOUR_AGENCY" : "Your agnecy  : ",
+  "LANGUAGE" : "Language",
+  "DARK_MODE" : "Dark Mode",
+  "SEE_ALL_NOTIFICATION" : "See all notifications",
+
+  "ERROR_404" : "We are sorry. But the page you are looking for cannot be found.",
+  "BACK_HOMEPAGE" : "BACK TO HOMEPAGE",
+
+  "DASHBOARD" : "Dashboard",
+  "USERS"  : "Users",
+  "BILLING" : "Billing",
+  "VOUCHER" : "Voucher",
+  "AI_SETTINGS" : "IA Settings",
+  "REPORTING" : "Reporting",
+  "LOGS" : "Logs",
+  "CONVERSATIONS" : "Conversations"
+}

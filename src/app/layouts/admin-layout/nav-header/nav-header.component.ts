@@ -1,11 +1,10 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-header',
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [NgClass],
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.css'
 })
@@ -37,7 +36,7 @@ export class NavHeaderComponent {
     this.localData = localStorage.getItem('data-sidebar-style');
     this.elementValue = document.body.getAttribute('data-sidebar-style');
     const width = (event.target as Window).innerWidth;
-    
+
     if (width < 1200 && width > 768) {
       this.toggleVal = true;
       this.sidebarStyle = 'mini';
@@ -48,7 +47,7 @@ export class NavHeaderComponent {
       this.toggleVal = false;
       this.sidebarStyle = this.localData ?? 'full'; // Use nullish coalescing
     }
-    
+
     this.sidebarToggle.emit({ toggleVal: this.toggleVal });
     document.body.setAttribute('data-sidebar-style', this.sidebarStyle);
   }

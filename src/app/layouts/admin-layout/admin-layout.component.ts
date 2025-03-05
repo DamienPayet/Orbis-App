@@ -5,7 +5,6 @@ import {NavHeaderComponent} from './nav-header/nav-header.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
-import {ChatboxComponent} from './chatbox/chatbox.component';
 
 
 @Component({
@@ -17,9 +16,7 @@ import {ChatboxComponent} from './chatbox/chatbox.component';
     NavHeaderComponent,
     SidebarComponent,
     FooterComponent,
-    HeaderComponent,
-    ChatboxComponent
-  ],
+    HeaderComponent],
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.css']
 })
