@@ -14,5 +14,29 @@
   "AI_SETTINGS" : "Configutation IA",
   "REPORTING" : "Rapports",
   "LOGS" : "Journaux",
-  "CONVERSATIONS" : "Conversations"
+  "CONVERSATIONS" : "Conversations",
+
+  "SIGN_IN_TITLE": "Se connecter",
+  "SIGN_IN_MESSAGE_HEADER": "Connectez-vous à votre compte pour commencer à utiliser Orbis",
+  "EMAIL": "E-mail",
+  "PASSWORD": "Mot de passe",
+  "REMEMBER_PREFERENCE": "Se souvenir de mes informations",
+  "FORGOT_PASSWORD": "Mot de passe oublié ?",
+  "NOT_REGISTERED": "Pas encore inscrit ?",
+  "REGISTER": "S'inscrire",
+  "SIGN_IN_BUTTON" : "Connexion",
+
+  "FORGOT_PASSWORD_TITLE": "Mot de passe oublié",
+  "FORGOT_PASSWORD_DESCRIPTION": "Entrez votre adresse e-mail pour recevoir un lien de réinitialisation.",
+  "NEED_HELP": "Besoin d'aide ?",
+  "SEND_RESET_LINK": "Envoyer le lien de réinitialisation"
+
+
+
+
+
+
+
+
+
 }
