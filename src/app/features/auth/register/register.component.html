@@ -1,0 +1,91 @@
+<div class="authincation h-100">
+  <div class="container-fluid">
+    <div class="row h-100">
+      <div class="col-lg-6 col-md-7 col-sm-12 mx-auto align-self-center">
+        <div class="login-form">
+          <div class="text-center">
+            <h3 class="title">{{ "SIGN_UP_TITLE"| translate }}</h3>
+            <p>{{ "SIGN_UP_MESSAGE_HEADER" | translate }}</p>
+          </div>
+          <form ngNoForm [action]="url">
+            <div class="mb-4">
+              <label class="mb-1 text-dark">{{ "USERNAME" | translate }}</label>
+              <input type="text" class="form-control form-control" value="">
+            </div>
+            <div class="mb-4">
+              <label class="mb-1 text-dark">{{ "EMAIL" | translate }}</label>
+              <input type="email" class="form-control form-control" value="">
+            </div>
+            <div class="mb-4 position-relative">
+              <label class="mb-1 text-dark">{{ "PASSWORD" | translate }}</label>
+              <div class="position-relative">
+                <input type="password" class="form-control" value=""
+                       [type]="hide_show ? 'text' : 'password'">
+                <span class="show-pass eye" (click)="passwordHide()" [ngClass]="{'active':hide_show}">
+                  <i class="fa fa-eye-slash"></i>
+                  <i class="fa fa-eye"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mb-4 position-relative">
+              <label class="mb-1 text-dark">{{ "PASSWORD_CONFIRMATION" | translate }}</label>
+              <div class="position-relative">
+                <input type="password" class="form-control" value=""
+                       [type]="hide_show ? 'text' : 'password'">
+                <span class="show-pass eye" (click)="passwordHide()" [ngClass]="{'active':hide_show}">
+                  <i class="fa fa-eye-slash"></i>
+                  <i class="fa fa-eye"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mb-4 position-relative">
+              <label class="mb-1 text-dark">{{ 'WHO_ARE_YOU' | translate }}</label>
+              <div class="d-flex justify-content-between">
+                <div class="form-check d-inline-block mx-2">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioAgency">
+                  <label class="form-check-label" for="flexRadioAgency">
+                    {{ 'AN_AGENCY' | translate }}
+                  </label>
+                </div>
+                <div class="form-check d-inline-block">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioModel">
+                  <label class="form-check-label" for="flexRadioModel">
+                    {{ 'A_MODEL' | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row d-flex justify-content-between mt-4 mb-2">
+              <div class="mb-4">
+                <div class="form-check custom-checkbox mb-3">
+                  <input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+                  <label class="form-check-label" for="customCheckBox1">{{ "REMEMBER_PREFERENCE" | translate }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mb-4">
+              <button type="submit" class="btn btn-primary btn-block">{{ "SIGN_UP_BUTTON" | translate }}</button>
+            </div>
+            <p class="text-center">{{ "ALREADY_REGISTERED" | translate }}
+              <a class="btn-link text-primary" routerLink="/auth/login">{{ "SIGN_IN_TITLE" | translate }}</a>
+            </p>
+          </form>
+        </div>
+      </div>
+      <div class="col-xl-6 col-sm-6">
+        <div class="pages-left h-100">
+          <div class="login-content">
+            <p></p>
+          </div>
+          <div class="login-media text-center">
+            @if (theme == 'dark') {
+              <img src="../../../../assets/images/illustrations/logo1-dark.png" alt="LOGIN_PIC">
+            } @else {
+              <img src="../../../../assets/images/illustrations/logo1-lite.png" alt="LOGIN_PIC">
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

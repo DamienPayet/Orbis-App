@@ -1,0 +1,46 @@
+﻿{
+  "YOUR_AGENCY" : "Votre agence",
+  "LANGUAGE" : "Langue",
+  "DARK_MODE" : "Mode sombre",
+  "SEE_ALL_NOTIFICATION": "Voir toutes les notifications",
+
+  "ERROR_404": "Nous sommes désolés, mais la page que vous recherchez est introuvable.",
+  "BACK_HOMEPAGE": "RETOUR À LA PAGE D'ACCUEIL",
+
+  "DASHBOARD" : "Tableau de bord",
+  "USERS"  : "Utilisateurs",
+  "BILLING" : "Facturation",
+  "VOUCHER" : "Promotion",
+  "AI_SETTINGS" : "Configutation IA",
+  "REPORTING" : "Rapports",
+  "LOGS" : "Journaux",
+  "CONVERSATIONS" : "Conversations",
+
+  "SIGN_IN_TITLE": "Se connecter",
+  "SIGN_IN_MESSAGE_HEADER": "Connectez-vous à votre compte pour commencer à utiliser Orbis",
+  "EMAIL": "E-mail",
+  "PASSWORD": "Mot de passe",
+  "REMEMBER_PREFERENCE": "Se souvenir de mes informations",
+  "FORGOT_PASSWORD": "Mot de passe oublié ?",
+  "NOT_REGISTERED": "Pas encore inscrit ?",
+  "REGISTER": "S'inscrire",
+  "SIGN_IN_BUTTON" : "Connexion",
+  "LOGIN_ERROR": "E-mail ou mot de passe invalide",
+
+
+  "FORGOT_PASSWORD_TITLE": "Mot de passe oublié",
+  "FORGOT_PASSWORD_DESCRIPTION": "Entrez votre adresse e-mail pour recevoir un lien de réinitialisation.",
+  "NEED_HELP": "Besoin d'aide ?",
+  "SEND_RESET_LINK": "Envoyer le lien de réinitialisation",
+
+  "SIGN_UP_TITLE": "Créer un compte",
+  "SIGN_UP_MESSAGE_HEADER": "Connectez-vous à votre compte pour commencer à utiliser Orbis",
+  "USERNAME": "Nom d'utilisateur",
+  "PASSWORD_CONFIRMATION": "Confirmation du mot de passe",
+  "SIGN_UP_BUTTON": "S'inscrire",
+  "ALREADY_REGISTERED": "Déjà inscrit ?",
+  "WHO_ARE_YOU": "Vous êtes ?",
+  "AN_AGENCY": "Une Agence",
+  "A_MODEL": "Un(e) Modèle"
+
+}
