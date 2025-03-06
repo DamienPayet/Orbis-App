@@ -7,15 +7,15 @@
             <h3 class="title">{{ "SIGN_IN_TITLE" | translate }}</h3>
             <p>{{ "SIGN_IN_MESSAGE_HEADER" | translate}}</p>
           </div>
-          <form ngNoForm [action]="url">
+          <form [formGroup]="loginForm">
             <div class="mb-4">
               <label class="mb-1 text-dark">{{ "EMAIL" | translate }}</label>
-              <input type="email" class="form-control form-control">
+              <input type="email" formControlName="email"  class="form-control form-control">
             </div>
             <div class="mb-4 position-relative">
               <label class="mb-1 text-dark">{{ "PASSWORD" | translate }}</label>
               <div class="position-relative">
-                <input type="password" class="form-control" [type]="hide_show ? 'text' : 'password'">
+                <input type="password" class="form-control" formControlName="password" [type]="hide_show ? 'text' : 'password'">
                 <span class="show-pass eye" (click)="passwordHide()" [ngClass]="{'active':hide_show}">
                     <i class="fa fa-eye-slash"></i>
                     <i class="fa fa-eye"></i>
@@ -25,7 +25,7 @@
             <div class="form-row d-flex justify-content-between mt-4 mb-2">
               <div class="mb-4">
                 <div class="form-check custom-checkbox mb-3">
-                  <input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+                  <input type="checkbox" class="form-check-input" id="customCheckBox1">
                   <label class="form-check-label" for="customCheckBox1">{{ "REMEMBER_PREFERENCE" | translate }}</label>
                 </div>
               </div>
@@ -33,8 +33,13 @@
                 <a routerLink="/auth/forgot-password" class="btn-link text-primary">{{"FORGOT_PASSWORD" | translate}}</a>
               </div>
             </div>
+            @if(error){
+            <div class="mb-4 text-center" >
+              <label class="mb-1 text-danger">{{ "LOGIN_ERROR" | translate }}</label>
+            </div>
+            }
             <div class="text-center mb-4">
-              <button type="submit" class="btn btn-primary btn-block">{{"SIGN_IN_BUTTON" | translate}}</button>
+              <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()"  class="btn btn-primary btn-block">{{"SIGN_IN_BUTTON" | translate}}</button>
             </div>
             <p class="text-center">{{ "NOT_REGISTERED" | translate }}
               <a class="btn-link text-primary" routerLink="/auth/register">{{ "REGISTER" | translate }}</a>
@@ -48,7 +53,7 @@
             <p></p>
           </div>
           <div class="login-media text-center">
-            @if(localData == 'dark'){
+            @if(theme == 'dark'){
               <img src="../../../../assets/images/illustrations/logo1-dark.png" alt="LOGIN_PIC">
             }
             @else{

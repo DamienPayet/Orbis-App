@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
+import {ThemeService} from '../../../core/services/utils/theme/theme.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,16 +15,9 @@ import {TranslatePipe} from '@ngx-translate/core';
 })
 export class ForgotPasswordComponent {
   url = '/admin/index'
-  localData: string | null = '';
+  theme: string | null = '';
 
-  constructor() {
-    this.localData = localStorage.getItem('data-theme-version');
-    if (this.localData) {
-      document.body.setAttribute('data-theme-version', this.localData);
-    }else {
-      this.localData = 'dark'
-      localStorage.setItem('data-theme-version',this.localData);
-      document.body.setAttribute('data-theme-version', 'dark');
-    }
+  constructor(themeService : ThemeService) {
+    this.theme =themeService.getTheme()
   }
 }

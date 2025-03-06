@@ -25,10 +25,21 @@
   "NOT_REGISTERED": "Not registered yet?",
   "REGISTER": "Register",
   "SIGN_IN_BUTTON" : "Log In",
+  "LOGIN_ERROR": "Email or password invalid",
 
   "FORGOT_PASSWORD_TITLE": "Forgot Password",
   "FORGOT_PASSWORD_DESCRIPTION": "Enter your email address to receive a reset link.",
   "NEED_HELP": "Need help?",
-  "SEND_RESET_LINK": "Send reset link"
+  "SEND_RESET_LINK": "Send reset link",
+
+  "SIGN_UP_TITLE": "Sign up your account",
+  "SIGN_UP_MESSAGE_HEADER": "Sign in to your account to start using Orbis",
+  "USERNAME": "Username",
+  "PASSWORD_CONFIRMATION": "Password confirmation",
+  "SIGN_UP_BUTTON": "Sign Up",
+  "ALREADY_REGISTERED": "Already registered?",
+  "WHO_ARE_YOU": "Who are you?",
+  "AN_AGENCY": "An Agency",
+  "A_MODEL": "A Model"
 
 }

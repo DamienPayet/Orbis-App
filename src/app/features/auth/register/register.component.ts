@@ -1,30 +1,26 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import {TranslatePipe} from '@ngx-translate/core';
+import {ThemeService} from '../../../core/services/utils/theme/theme.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     NgClass,
-    RouterLink
+    RouterLink,
+    TranslatePipe
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   hide_show: boolean = false;
-  localData: string | null = '';
+  theme: string | null = '';
 
-  constructor() {
-    this.localData = localStorage.getItem('data-theme-version');
-    if (this.localData) {
-      document.body.setAttribute('data-theme-version', this.localData);
-    }else {
-      this.localData = 'dark'
-      localStorage.setItem('data-theme-version',this.localData);
-      document.body.setAttribute('data-theme-version', 'dark');
-    }
+  constructor(themeService : ThemeService) {
+    this.theme =themeService.getTheme()
   }
   passwordHide(){
     this.hide_show = !this.hide_show;

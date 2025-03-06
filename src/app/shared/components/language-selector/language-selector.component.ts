@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LanguageService} from '../../../core/services/language/language.service';
+import {LanguageService} from '../../../core/services/utils/language/language.service';
 import {Select2Component} from '../../plugins/select2/select2.component';
 
 @Component({
