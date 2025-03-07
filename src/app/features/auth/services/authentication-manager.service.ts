@@ -4,10 +4,15 @@ import {endpoints} from '../../../Data/endpoints/endpoint';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {LoginRequest, LoginResponse} from '../models/auth.models';
-import {usersEndpoint} from '../../../Data/endpoints/users.endpoint';
 import {UserInfoResponseInterfaces} from '../../../core/Interfaces/shared/user-info-response.interfaces';
 import {Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
+/**
+ * Service responsible for managing user authentication and role-based redirection.
+ * Provides methods for handling login requests, token refresh, role validation,
+ * user authentication status checks, and homepage redirection.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +20,7 @@ export class AuthenticationManagerService {
 
   constructor(
     private _httpRequest: HttpRequestService
-  , private _router: Router) {
+    , private _router: Router) {
   }
 
 
@@ -28,12 +33,58 @@ export class AuthenticationManagerService {
   loginRequest(credentials: LoginRequest): Observable<LoginResponse> {
     return this._httpRequest.postWithCredentials<LoginRequest, LoginResponse>(endpoints.authEndpoints.login, credentials).pipe(
       catchError(error => {
-        console.error('Erreur de connexion :', error);
+        if (environment.debug)
+          console.error('Erreur de connexion :', error);
         throw error;
       })
     );
   }
 
+  /**
+   * Initiates a token refresh request to the authentication endpoint.
+   * This function sends a POST request with credentials to the refresh token endpoint
+   * and processes the response. If an error occurs during the request, it logs the error
+   * and rethrows it for further handling.
+   *
+   * @return {Observable<LoginResponse>} An observable that emits the server's response containing
+   * the refreshed login information.
+   */
+  refreshTokenRequest(): Observable<LoginResponse> {
+    return this._httpRequest.postWithCredentials<{}, LoginResponse>(endpoints.authEndpoints.refresh, {}).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur de connexion :', error);
+        throw error;
+      })
+    )
+  }
+
+  /**
+   * Logs out the current user by removing their session details from local storage
+   * and making an HTTP request to the server to terminate the session.
+   *
+   * @return {Observable<any>} An observable that resolves when the logout operation is complete,
+   *                           or emits an error if the logout request fails.
+   */
+  logout(): Observable<any> {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userRole');
+    return this._httpRequest.postWithCredentials<{}, {}>(endpoints.authEndpoints.logout, {}).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur de connexion :', error);
+        throw error;
+      })
+    )
+  }
+
+  /**
+   * Determines if the current user has the role of 'Administrator'.
+   *
+   * @return {Promise<boolean>} A promise that resolves to true if the user's role is 'Administrator', otherwise false.
+   * The promise may reject with an error if the HTTP request fails.
+   */
   isAdmin(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
@@ -47,6 +98,12 @@ export class AuthenticationManagerService {
     })
   }
 
+  /**
+   * Determines if the current user has the role of 'Agency'.
+   *
+   * @return {Promise<boolean>} A promise that resolves to true if the user's role is 'Agency', otherwise false.
+   * The promise rejects with an error object if the HTTP request fails.
+   */
   isAgency(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
@@ -60,6 +117,11 @@ export class AuthenticationManagerService {
     })
   }
 
+  /**
+   * Determines if the current user has the role of 'Model'.
+   *
+   * @return {Promise<boolean>} A promise that resolves to true if the user's role is 'Model', otherwise false.
+   */
   isModel(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
@@ -73,10 +135,15 @@ export class AuthenticationManagerService {
     })
   }
 
+  /**
+   * Checks if a user is currently logged in by making an HTTP request with credentials.
+   * Resolves to true if the request succeeds, otherwise rejects with an error.
+   * @return {Promise<boolean>} A promise that resolves to true if the user is logged in, or rejects with an error.
+   */
   isLogged(): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
-        next: (data) => {
+        next: () => {
           resolve(true)
         },
         error: (error) => {
@@ -86,6 +153,13 @@ export class AuthenticationManagerService {
     })
   }
 
+  /**
+   * Redirects the user to the appropriate homepage based on their role.
+   * It checks the userRole stored in localStorage and navigates to the corresponding route.
+   * If no userRole is found or the role is unrecognized, the user is redirected to the login page.
+   *
+   * @return {void} No return value.
+   */
   redirectHomePage() {
     const userRole: string | null = localStorage.getItem("userRole");
 

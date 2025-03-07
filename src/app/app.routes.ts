@@ -9,5 +9,6 @@ export const routes: Routes = [
   loginRoutes,
   workspaceRoutes,
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: 'login', redirectTo: '/auth/login', pathMatch: 'full' },
   {component: Error404Component, path: '**'},
 ];

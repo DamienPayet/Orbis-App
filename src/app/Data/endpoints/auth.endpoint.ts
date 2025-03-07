@@ -3,5 +3,6 @@ export const authEndpoints  = {
    login : `${base}/login`,
    register : `${base}/register`,
    forgotPassword : `${base}/forgot-password`,
-   refresh : `${base}/refresh`
+   refresh : `${base}/refresh-token`,
+   logout : `${base}/logout`,
 };
