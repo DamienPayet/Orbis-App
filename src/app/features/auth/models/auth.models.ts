@@ -6,7 +6,13 @@ export interface LoginRequest {
 
 
 export interface LoginResponse {
-  token: string;
-  userId: string;
-  expiresIn: number;
+  message : string;
+  response? : {
+    success : boolean;
+    token: string;
+    refreshToken: string;
+    userId : string,
+    username : string,
+    userRole : string
+  }
 }

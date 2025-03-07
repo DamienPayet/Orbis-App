@@ -1,6 +1,6 @@
 import {NgClass} from '@angular/common';
 import {Component} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {ThemeService} from '../../../core/services/utils/theme/theme.service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -8,6 +8,7 @@ import {AuthenticationManagerService} from '../services/authentication-manager.s
 import {takeUntil} from 'rxjs';
 import {Unsubscribable} from '../../../core/services/utils/Unsubscribable';
 import {environment} from '../../../../environments/environment';
+import {LoginResponse} from '../models/auth.models';
 
 @Component({
   selector: 'app-login',
@@ -28,12 +29,16 @@ export class LoginComponent extends Unsubscribable {
   loginForm: FormGroup;
 
   private _authManager: AuthenticationManagerService;
-
-  constructor(themeService: ThemeService, authManager: AuthenticationManagerService) {
+  private _router : Router;
+  constructor(
+    themeService: ThemeService,
+    authManager: AuthenticationManagerService,
+    router: Router) {
     super();
     this.theme = themeService.getTheme()
     this.loginForm = this.initForm()
     this._authManager = authManager;
+    this._router = router;
   }
 
   passwordHide() {
@@ -53,7 +58,14 @@ export class LoginComponent extends Unsubscribable {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
             next: (data) => {
-              console.log(data);
+              if (data.response && data.response.success) {
+                this.storeUserInfo(data)
+                console.log(data)
+                this._authManager.redirectHomePage()
+              } else {
+                if (environment.debug) console.error(data);
+                this.error = true;
+              }
             },
             error: (error) => {
               if (environment.debug) console.error(error);
@@ -65,5 +77,10 @@ export class LoginComponent extends Unsubscribable {
     }
   }
 
+  storeUserInfo(response: LoginResponse) {
+    localStorage.setItem('userId', response.response!.userId)
+    localStorage.setItem('username', response.response!.username)
+    localStorage.setItem('userRole', response.response!.userRole)
+  }
 
 }

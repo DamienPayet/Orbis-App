@@ -1,7 +1,7 @@
 <div class="deznav" (mouseover)='hoverAdd(true)' (mouseout)="hoverAdd(false)">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-            @for(item of sidebarMenu; track item; let first_i = $first;){
+            @for(item of sideBarMenuItem; track item; let first_i = $first;){
             @if(item.label){
             <li class="menu-title" [ngClass]="{'first':first_i}">{{item.label | translate}}</li>
             }

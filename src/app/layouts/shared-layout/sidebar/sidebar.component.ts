@@ -1,9 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {CommonModule, Location, NgClass, PlatformLocation} from '@angular/common';
 import {SafeHtmlSvgPipe} from '../../../shared/pipes/safe-html-svg.pipe';
 import {TranslatePipe} from '@ngx-translate/core';
-import {MenuItemAdmin} from '../../../Data/admin/menu-item-admin';
 import {MenuItem} from '../../../core/Interfaces/shared/menu-item.interface';
 
 @Component({
@@ -14,14 +13,13 @@ import {MenuItem} from '../../../core/Interfaces/shared/menu-item.interface';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
-
+  @Input() sideBarMenuItem : MenuItem[] = [];
   @Output() newTitleEvent = new EventEmitter<{ title: string }>(); // DashBoard Title
   @Output() mouseHoverEvent = new EventEmitter<string>(); // Data pass Admin page
 
   email: string = 'marquezzzz@mail.com';
   elementValue: any = '';
   currentHref: string = "";
-
 
   constructor(private router: Router, private location: Location, private backLocation: PlatformLocation) {
     router.events.subscribe(() => {
@@ -34,6 +32,7 @@ export class SidebarComponent {
     backLocation.onPopState(() => {   // back click get url
       this.handleActiveMenu(window.location.pathname);
     });
+    console.log(this.sideBarMenuItem)
   }
 
   hoverAdd(val: any) {
@@ -53,7 +52,7 @@ export class SidebarComponent {
   activeSubSubMenu: string = "";
 
   handleActiveMenu(val: any) {
-    this.sidebarMenu.map((data: any) => {
+    this.sideBarMenuItem.map((data: any) => {
       if (data.route == val) {
         this.activeMenu = data.title;
       }
@@ -95,9 +94,4 @@ export class SidebarComponent {
     }
   }
 
-
-  sidebarMenu: MenuItem[] = [
-    ...MenuItemAdmin,
-  //  ...MenuItemModo
-  ]
 }
