@@ -15,6 +15,5 @@ export class WorkspaceLayoutComponent {
   protected readonly MenuItemWorspace = MenuItemWorspace;
 
   constructor() {
-    console.log(this.MenuItemWorspace)
   }
 }

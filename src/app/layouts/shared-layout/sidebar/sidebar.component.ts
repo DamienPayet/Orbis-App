@@ -32,7 +32,6 @@ export class SidebarComponent {
     backLocation.onPopState(() => {   // back click get url
       this.handleActiveMenu(window.location.pathname);
     });
-    console.log(this.sideBarMenuItem)
   }
 
   hoverAdd(val: any) {
