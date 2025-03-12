@@ -40,6 +40,14 @@
   "ALREADY_REGISTERED": "Already registered?",
   "WHO_ARE_YOU": "Who are you?",
   "AN_AGENCY": "An Agency",
-  "A_MODEL": "A Model"
+  "A_MODEL": "A Model",
+
+  "RESET_PASSWORD_TITLE": "Password Reset",
+  "RESET_PASSWORD_MESSAGE_HEADER": "Please follow the instructions to reset your password",
+  "RESET_PASSWORD_BUTTON": "Reset the password",
+  "PASSWORD_NOT_MATCH": "Passwords do not match",
+  "PASSWORD_RECOVERED": "Password recovered?",
+
+  "SERVICE_ERROR" : "Temporarily unavailable services"
 
 }

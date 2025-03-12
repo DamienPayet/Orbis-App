@@ -10,5 +10,6 @@ export const routes: Routes = [
   workspaceRoutes,
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
   { path: 'login', redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: 'reset-password', redirectTo: '/auth/reset-password', pathMatch: 'full' },
   {component: Error404Component, path: '**'},
 ];

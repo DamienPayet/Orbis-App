@@ -3,7 +3,12 @@ import {HttpRequestService} from '../../../core/services/utils/http-request/http
 import {endpoints} from '../../../Data/endpoints/endpoint';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {LoginRequest, LoginResponse} from '../models/auth.models';
+import {
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
+  LoginRequest,
+  LoginResponse, ResetPasswordRequest, ResetPasswordResponse
+} from '../models/auth.models';
 import {UserInfoResponseInterfaces} from '../../../core/Interfaces/shared/user-info-response.interfaces';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
@@ -53,12 +58,44 @@ export class AuthenticationManagerService {
     return this._httpRequest.postWithCredentials<{}, LoginResponse>(endpoints.authEndpoints.refresh, {}).pipe(
       catchError(error => {
         if (environment.debug)
-          console.error('Erreur de connexion :', error);
+          console.error('Erreur rafraichissement du token :', error);
         throw error;
       })
     )
   }
 
+
+  /**
+   * Triggers the process for resetting a user's password by sending a request to the server
+   * with the provided email address.
+   *
+   * @param {ForgotPasswordRequest} email - The email address associated with the user's account to start the password reset process.
+   * @return {Observable<ForgotPasswordResponse>} An observable that emits the server response for the password reset request.
+   */
+  forgotPassword(email: ForgotPasswordRequest): Observable<ForgotPasswordResponse> {
+    return this._httpRequest.postWithCredentials<ForgotPasswordRequest, ForgotPasswordResponse>(endpoints.authEndpoints.forgotPassword, email).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur mot de passe oublié :', error)
+        throw error
+      })
+    )
+  }
+  /**
+   * Resets the user's password based on the provided credentials.
+   *
+   * @param {ResetPasswordRequest} credentials - The object containing the necessary information to reset the password, such as email or verification data.
+   * @return {Observable<ResetPasswordResponse>} An observable that emits the response of the password reset operation.
+   */
+  resetPassword(credentials: ResetPasswordRequest): Observable<ResetPasswordResponse> {
+    return this._httpRequest.postWithCredentials<ResetPasswordRequest, ResetPasswordResponse>(endpoints.authEndpoints.forgotPassword, credentials).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur réinitialisation du mot de passe :', error)
+        throw error
+      })
+    )
+  }
   /**
    * Logs out the current user by removing their session details from local storage
    * and making an HTTP request to the server to terminate the session.
@@ -73,7 +110,7 @@ export class AuthenticationManagerService {
     return this._httpRequest.postWithCredentials<{}, {}>(endpoints.authEndpoints.logout, {}).pipe(
       catchError(error => {
         if (environment.debug)
-          console.error('Erreur de connexion :', error);
+          console.error('Erreur de déconnexion :', error);
         throw error;
       })
     )
@@ -152,6 +189,7 @@ export class AuthenticationManagerService {
       })
     })
   }
+
 
   /**
    * Redirects the user to the appropriate homepage based on their role.

@@ -41,6 +41,14 @@
   "ALREADY_REGISTERED": "Déjà inscrit ?",
   "WHO_ARE_YOU": "Vous êtes ?",
   "AN_AGENCY": "Une Agence",
-  "A_MODEL": "Un(e) Modèle"
+  "A_MODEL": "Un(e) Modèle",
+
+  "RESET_PASSWORD_TITLE": "Réinitialisation du mot de passe",
+  "RESET_PASSWORD_MESSAGE_HEADER": "Veuillez suivre les instructions pour réinitialiser votre mot de passe",
+  "RESET_PASSWORD_BUTTON": "Réinitialiser le mot de passe",
+  "PASSWORD_NOT_MATCH": "Les mots de passe ne correspondent pas",
+  "PASSWORD_RECOVERED": "Mot de passe retrouvé ?",
+
+  "SERVICE_ERROR" : "Services temporairement indisponibles"
 
 }

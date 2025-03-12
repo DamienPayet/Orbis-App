@@ -32,6 +32,13 @@ export class HttpRequestService {
     return this._httpClient.get<T>(this._endpoint + path, {params});
   }
 
+  /**
+   * Sends an HTTP GET request to the specified path with credentials set for CORS.
+   *
+   * @param {string} path - The relative URL path for the resource to fetch.
+   * @param {HttpParams} [params=new HttpParams()] - Optional HTTP parameters for the request.
+   * @return {Observable<T>} An observable emitting the response data of type T.
+   */
   public getWithCredentials<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this._httpClient.get<T>(this._endpoint + path, { withCredentials: true});
   }
