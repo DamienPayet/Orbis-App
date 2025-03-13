@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {AuthenticationManagerService} from '../services/authentication-manager.service';
 import {ThemeService} from '../../../core/services/utils/theme/theme.service';
 import {Unsubscribable} from '../../../core/services/utils/Unsubscribable';
 import {NgClass} from '@angular/common';
+import {takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
@@ -51,19 +52,38 @@ export class ResetPasswordComponent extends Unsubscribable{
 
   initForm() {
     return new FormGroup({
-      token : new FormControl(''),
+      token : new FormControl(this.token),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required,Validators.minLength(6)]),
+      newPassword: new FormControl('', [Validators.required,Validators.minLength(6)]),
       password_confirmation: new FormControl('', [Validators.required,Validators.minLength(6)])
     });
   }
   onSubmit() {
     if (this.resetPasswordForm.valid) {
-      if (this.resetPasswordForm.get('password')?.value !== this.resetPasswordForm.get('password_confirmation')?.value) {
+      if (this.resetPasswordForm.get('newPassword')?.value !== this.resetPasswordForm.get('password_confirmation')?.value) {
         this.error = true;
-        this.errorMessage = "{{PASSWORD_NOT_MATCH}}";
+        this.errorMessage = "PASSWORD_NOT_MATCH";
       }else{
-      //  this._authManager.resetPassword()
+        this._authManager.resetPassword(this.resetPasswordForm.value)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (data) => {
+              if (data.success) {
+                this.error = false;
+                this.success = true;
+                this.successMessage = data.message;
+              }else{
+                this.success = false;
+                this.error = true;
+                this.errorMessage = data.message;
+              }
+            },
+            error: (error) => {
+              this.error = true;
+              this.errorMessage = "SERVICE_ERROR";
+            }
+          })
+        console.log(this.resetPasswordForm.value)
       }
     }
   }

@@ -88,7 +88,7 @@ export class AuthenticationManagerService {
    * @return {Observable<ResetPasswordResponse>} An observable that emits the response of the password reset operation.
    */
   resetPassword(credentials: ResetPasswordRequest): Observable<ResetPasswordResponse> {
-    return this._httpRequest.postWithCredentials<ResetPasswordRequest, ResetPasswordResponse>(endpoints.authEndpoints.forgotPassword, credentials).pipe(
+    return this._httpRequest.postWithCredentials<ResetPasswordRequest, ResetPasswordResponse>(endpoints.authEndpoints.resetPassword, credentials).pipe(
       catchError(error => {
         if (environment.debug)
           console.error('Erreur réinitialisation du mot de passe :', error)
