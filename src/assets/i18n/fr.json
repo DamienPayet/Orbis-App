@@ -49,6 +49,10 @@
   "PASSWORD_NOT_MATCH": "Les mots de passe ne correspondent pas",
   "PASSWORD_RECOVERED": "Mot de passe retrouvé ?",
 
+  "PASSWORD_RESET_TITLE": "Mot de passe réinitialisé",
+  "PASSWORD_RESET_MESSAGE_HEADER": "Le mot de passe a été correctement modifié. Vous pouvez maintenant vous connecter.",
+
+
   "SERVICE_ERROR" : "Services temporairement indisponibles"
 
 }

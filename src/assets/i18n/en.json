@@ -48,6 +48,9 @@
   "PASSWORD_NOT_MATCH": "Passwords do not match",
   "PASSWORD_RECOVERED": "Password recovered?",
 
+  "PASSWORD_RESET_TITLE": "Password Reset",
+  "PASSWORD_RESET_MESSAGE_HEADER": "The password has been successfully changed. You can now log in.",
+
   "SERVICE_ERROR" : "Temporarily unavailable services"
 
 }
