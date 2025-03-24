@@ -42,6 +42,9 @@
   "WHO_ARE_YOU": "Vous êtes ?",
   "AN_AGENCY": "Une Agence",
   "A_MODEL": "Un(e) Modèle",
+  "FIRSTNAME" : "Prénom",
+  "LASTNAME" : "Nom",
+  "PHONE_NUMBER":  "Numéro de téléphone",
 
   "RESET_PASSWORD_TITLE": "Réinitialisation du mot de passe",
   "RESET_PASSWORD_MESSAGE_HEADER": "Veuillez suivre les instructions pour réinitialiser votre mot de passe",

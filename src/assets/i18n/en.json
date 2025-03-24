@@ -41,6 +41,9 @@
   "WHO_ARE_YOU": "Who are you?",
   "AN_AGENCY": "An Agency",
   "A_MODEL": "A Model",
+  "FIRSTNAME" : "First name",
+  "LASTNAME" : "Last name",
+  "PHONE_NUMBER":  "Phone number",
 
   "RESET_PASSWORD_TITLE": "Password Reset",
   "RESET_PASSWORD_MESSAGE_HEADER": "Please follow the instructions to reset your password",

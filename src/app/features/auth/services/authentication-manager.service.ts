@@ -7,7 +7,7 @@ import {
   ForgotPasswordRequest,
   ForgotPasswordResponse,
   LoginRequest,
-  LoginResponse, ResetPasswordRequest, ResetPasswordResponse
+  LoginResponse, RegisterRequest, RegisterResponse, ResetPasswordRequest, ResetPasswordResponse
 } from '../models/auth.models';
 import {UserInfoResponseInterfaces} from '../../../core/Interfaces/shared/user-info-response.interfaces';
 import {Router} from '@angular/router';
@@ -40,6 +40,22 @@ export class AuthenticationManagerService {
       catchError(error => {
         if (environment.debug)
           console.error('Erreur de connexion :', error);
+        throw error;
+      })
+    );
+  }
+
+  /**
+   * Sends a register request to create a new account and returns the server response.
+   *
+   * @param {RegisterRequest} accountInformation - The information required to register a new account.
+   * @return {Observable<RegisterResponse>} An observable emitting the response of the registration process.
+   */
+  registerRequest(accountInformation : RegisterRequest): Observable<RegisterResponse> {
+    return this._httpRequest.postWithCredentials<RegisterRequest, RegisterResponse>(endpoints.authEndpoints.register, accountInformation).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur à l\'enregistement du compte :', error);
         throw error;
       })
     );
