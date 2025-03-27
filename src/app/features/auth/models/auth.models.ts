@@ -12,7 +12,8 @@ export interface LoginResponse {
     refreshToken: string;
     userId: string,
     username: string,
-    userRole: string
+    userRole: string,
+    userType: string
   }
 }
 
@@ -36,6 +37,30 @@ export interface RegisterResponse {
   };
 }
 
+export interface AgencyRegisterRequest {
+  name: string
+  legalName: string
+  taxId: string
+  registrationNumber: string
+  email: string
+  phoneNumber: string
+  country: string
+  city: string
+  postalCode: string
+  address: string
+  businessType: string
+  website: string
+  logoUrl: string
+}
+export interface AgencyRegisterResponse {
+  success: boolean;
+  message: string;
+  error: {
+    success: boolean;
+    message : string
+    errors: [];
+  };
+}
 export interface ForgotPasswordRequest {
   email: string;
 }

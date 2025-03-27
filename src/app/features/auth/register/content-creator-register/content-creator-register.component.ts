@@ -1,14 +1,15 @@
 import {NgClass, NgForOf} from '@angular/common';
 import {Component} from '@angular/core';
+import {FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
-import {ThemeService} from '../../../core/services/utils/theme/theme.service';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {phoneNumberValidator} from '../../../shared/validators/phone-number.validator';
-import {Unsubscribable} from '../../../core/services/utils/Unsubscribable';
-import {AuthenticationManagerService} from '../services/authentication-manager.service';
+import {AuthenticationManagerService} from '../../services/authentication-manager.service';
+import {ThemeService} from '../../../../core/services/utils/theme/theme.service';
+import {Unsubscribable} from '../../../../core/services/utils/Unsubscribable';
+import {phoneNumberValidator} from '../../../../shared/validators/phone-number.validator';
+import {environment} from '../../../../../environments/environment';
 import {takeUntil} from 'rxjs';
-import {environment} from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-register',
@@ -20,10 +21,10 @@ import {environment} from '../../../../environments/environment';
     ReactiveFormsModule,
     NgForOf
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  templateUrl: './content-creator-register.component.html',
+  styleUrl: './content-creator-register.component.scss'
 })
-export class RegisterComponent extends Unsubscribable {
+export class ContentCreatorRegisterComponent extends Unsubscribable {
   hide_show: boolean = false;
   theme: string | null = '';
   error: boolean = false;
@@ -72,11 +73,11 @@ export class RegisterComponent extends Unsubscribable {
               if (data.success) {
                 if (this.registerForm.value.accountType == "Agency") {
                   // Redirection vers la page de configuration du compte agence
-                  this._router.navigate(['/register/agency'])
+                  this._router.navigate(['/agency-configuration'])
                     .then();
                 } else {
                   // Redirection vers la page de configuration du compte créateur de contenu
-                  this._router.navigate(['/register/content-creator'])
+                  this._router.navigate(['/content-creator-configuration'])
                     .then();
                 }
               } else {
@@ -116,5 +117,4 @@ export class RegisterComponent extends Unsubscribable {
   passwordHide() {
     this.hide_show = !this.hide_show;
   }
-
 }

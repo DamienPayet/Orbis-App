@@ -5,7 +5,7 @@ import {Route} from '@angular/router';
 import {notLoggedInGuard} from '../core/guards/not-logged-in.guard';
 import {ResetPasswordComponent} from '../features/auth/reset-password/reset-password.component';
 
-export const loginRoutes  : Route =  {
+export const authenticationRoutes  : Route =  {
   path: 'auth',
   canActivateChild:[notLoggedInGuard],
   children: [

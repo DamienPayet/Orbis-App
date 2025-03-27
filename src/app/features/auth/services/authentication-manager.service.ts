@@ -4,6 +4,8 @@ import {endpoints} from '../../../Data/endpoints/endpoint';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {
+  AgencyRegisterRequest,
+  AgencyRegisterResponse,
   ForgotPasswordRequest,
   ForgotPasswordResponse,
   LoginRequest,
@@ -53,6 +55,16 @@ export class AuthenticationManagerService {
    */
   registerRequest(accountInformation : RegisterRequest): Observable<RegisterResponse> {
     return this._httpRequest.postWithCredentials<RegisterRequest, RegisterResponse>(endpoints.authEndpoints.register, accountInformation).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur à l\'enregistement du compte :', error);
+        throw error;
+      })
+    );
+  }
+
+  registerAgencyRequest(agencyInformation : AgencyRegisterRequest): Observable<AgencyRegisterResponse> {
+    return this._httpRequest.postWithCredentials<AgencyRegisterRequest, AgencyRegisterResponse>(endpoints.authEndpoints.registerAgency , agencyInformation).pipe(
       catchError(error => {
         if (environment.debug)
           console.error('Erreur à l\'enregistement du compte :', error);
@@ -123,6 +135,7 @@ export class AuthenticationManagerService {
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('userType');
     return this._httpRequest.postWithCredentials<{}, {}>(endpoints.authEndpoints.logout, {}).pipe(
       catchError(error => {
         if (environment.debug)
@@ -142,7 +155,7 @@ export class AuthenticationManagerService {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
         next: (data) => {
-          resolve(data.role === 'Administrator')
+          resolve(data.role === 'admin')
         },
         error: (error) => {
           reject(error)
@@ -161,7 +174,7 @@ export class AuthenticationManagerService {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
         next: (data) => {
-          resolve(data.role === 'Agency')
+          resolve(data.role === 'agency')
         },
         error: (error) => {
           reject(error)
@@ -179,7 +192,7 @@ export class AuthenticationManagerService {
     return new Promise((resolve, reject) => {
       this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
         next: (data) => {
-          resolve(data.role === 'Model')
+          resolve(data.role === 'contentCreator')
         },
         error: (error) => {
           reject(error)
@@ -206,6 +219,23 @@ export class AuthenticationManagerService {
     })
   }
 
+  /**
+   * Checks if the user is ready based on the user type retrieved from the server.
+   * @return {Promise<boolean>} A promise that resolves with a boolean indicating whether the user type is valid (not empty, null, or undefined).
+   */
+  isReady(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
+        next: (data) => {
+          resolve(data.userType != "" && data.userType != null && data.userType != undefined)
+        },
+        error: (error) => {
+          reject(error)
+        }
+      })
+    })
+  }
+
 
   /**
    * Redirects the user to the appropriate homepage based on their role.
@@ -215,19 +245,20 @@ export class AuthenticationManagerService {
    * @return {void} No return value.
    */
   redirectHomePage() {
-    const userRole: string | null = localStorage.getItem("userRole");
+    const userType: string | null = localStorage.getItem("userType");
 
-    if (!userRole) {
+    if (!userType) {
       this._router.navigate(['/auth/login']);
       return;
     }
-
-    switch (userRole) {
-      case "Administrator":
+    console.log(userType)
+    switch (userType) {
+      case "admin":
+      case "moderator":
         this._router.navigate(['/admin/dashboard']);
         break;
-      case "Model":
-      case "Agency":
+      case "contentCreator":
+      case "agency":
         this._router.navigate(['/workspace/dashboard']);
         break;
       default:

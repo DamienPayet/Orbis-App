@@ -60,10 +60,9 @@ export class LoginComponent extends Unsubscribable {
             next: (data) => {
               if (data.response && data.response.success) {
                 this.storeUserInfo(data)
-                console.log(data)
                 this._authManager.redirectHomePage()
               } else {
-                if (environment.debug) console.error(data);
+                if (environment.debug) console.error(data );
                 this.error = true;
               }
             },
@@ -81,6 +80,7 @@ export class LoginComponent extends Unsubscribable {
     localStorage.setItem('userId', response.response!.userId)
     localStorage.setItem('username', response.response!.username)
     localStorage.setItem('userRole', response.response!.userRole)
+    localStorage.setItem('userType', response.response!.userType)
   }
 
 }

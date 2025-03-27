@@ -9,7 +9,23 @@ import {Router} from '@angular/router';
 export function RequestInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const authService = inject(AuthenticationManagerService);
   const router = inject(Router);
-  return next(req).pipe(
+
+  let lang = localStorage.getItem('app_lang')?.toLowerCase();
+
+  if (!lang) {
+    const browserLang = navigator.language.toLowerCase();
+    lang = browserLang.startsWith('fr') ? 'fr_FR' : 'en_US';
+  } else {
+    lang = lang.startsWith('fr') ? 'fr_FR' : 'en_US';
+  }
+
+  const modifiedReq = req.clone({
+    setHeaders: {
+      'Accept-Language': lang
+    }
+  });
+
+  return next(modifiedReq).pipe(
     catchError((error: HttpErrorResponse) => {
 // Attempt to refresh the token only if the request contains the host URL,
 // the caught error is an unauthorized error (401),
