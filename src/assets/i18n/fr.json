@@ -83,6 +83,13 @@
   "BUSINESS_TYPE": "Type d'entreprise",
   "WEBSITE": "Site web",
   "LOGO_URL": "URL du logo",
+  "VALIDATE_AGENCY-CREATION": "Valider la création de l'agence",
+
+  "REGISTER_CC_TITLE": "Présentez-nous votre profil de Créateur de contenu",
+  "REGISTER_CC_HEADER": "Pour commencer à utiliser Orbis, nous avons besoin d'en savoir un peu plus sur votre profil de Créateur de contenu. Remplissez ces quelques informations et c'est parti ! 🚀",
+  "MODEL_NAME" : "Nom de Modèle",
+  "VALIDATE_CONTENT_CREATOR_CREATION": "Valider la création du profil Créateur de contenu",
+
 
 
   "SERVICE_ERROR" : "Services temporairement indisponibles"

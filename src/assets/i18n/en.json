@@ -67,6 +67,13 @@
   "BUSINESS_TYPE": "Business type",
   "WEBSITE": "Website",
   "LOGO_URL": "Logo URL",
+  "VALIDATE_AGENCY-CREATION": "Validate agency creation",
+
+  "REGISTER_CC_TITLE": "Introduce us to your Content Creator profile",
+  "REGISTER_CC_HEADER": "To start using Orbis, we need to know a bit more about your Content Creator profile. Fill in these few details and let's get started! 🚀",
+  "MODEL_NAME" : "Model name",
+  "VALIDATE_CONTENT_CREATOR_CREATION": "Validate the creation of the Content Creator profile",
+
 
   "SERVICE_ERROR" : "Temporarily unavailable services"
 

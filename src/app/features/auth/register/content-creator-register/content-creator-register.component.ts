@@ -16,21 +16,19 @@ import {takeUntil} from 'rxjs';
   standalone: true,
   imports: [
     NgClass,
-    RouterLink,
-    TranslatePipe,
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    TranslatePipe
   ],
   templateUrl: './content-creator-register.component.html',
   styleUrl: './content-creator-register.component.scss'
 })
 export class ContentCreatorRegisterComponent extends Unsubscribable {
-  hide_show: boolean = false;
   theme: string | null = '';
   error: boolean = false;
   error_message_form: { [key: string]: string[] } = {}
   error_message: string = '';
-  registerForm: FormGroup;
+  registerContentCreatorForm: FormGroup;
 
 
   constructor(themeService: ThemeService,
@@ -38,83 +36,58 @@ export class ContentCreatorRegisterComponent extends Unsubscribable {
               private _router: Router) {
     super();
     this.theme = themeService.getTheme();
-    this.registerForm = this.initForm();
+    this.registerContentCreatorForm = this.initForm();
   }
 
   initForm() {
     return new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator()]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      accountType: new FormControl('Agency', [Validators.required]),
-      language: new FormControl(this.defineLanguage(), [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [Validators.required,phoneNumberValidator]),
+      country: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      businessType: new FormControl('',),
+      website: new FormControl(''),
+      logoUrl: new FormControl(''),
     });
   }
 
   onSubmit() {
-    if (this.registerForm.value.password != this.registerForm.value.passwordConfirmation) {
-      this.error = true;
-      this.error_message = "PASSWORD_NOT_MATCH";
-      this.error_message_form["password"] = [""];
-      this.error_message_form["passwordconfirmation"] = [""];
-      return;
-    }
-    if (this.registerForm.valid) {
-      this._authManager.registerRequest(this.registerForm.value)
+    if (this.registerContentCreatorForm.valid) {
+      this.error = false;
+      this._authManager.registerContentCreatorRequest(this.registerContentCreatorForm.value)
         .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          {
-            next: (data) => {
-              this.error = false;
-              if (data.success) {
-                if (this.registerForm.value.accountType == "Agency") {
-                  // Redirection vers la page de configuration du compte agence
-                  this._router.navigate(['/agency-configuration'])
-                    .then();
-                } else {
-                  // Redirection vers la page de configuration du compte créateur de contenu
-                  this._router.navigate(['/content-creator-configuration'])
-                    .then();
-                }
-              } else {
-                if (environment.debug) console.error(data);
-                this.error_message_form = {}
-                this.error = true;
-                this.error_message = "SERVICE_ERROR";
-              }
-            },
-            error: (err) => {
-              if (environment.debug) console.error(err);
-              this.error = true;
-              this.error_message_form = {}
-              if (err.status == 400 && err.error.message == "ValidationFailed") {
-                err.error.errors.forEach((e: any) => {
-                  const key = e.property.toLowerCase()
-                  if (!this.error_message_form[key]) this.error_message_form[key] = [];
-                  this.error_message_form[key].push(e.error);
-                });
-              } else {
-                this.error_message = "SERVICE_ERROR";
-              }
+        .subscribe({
+          next: (data) => {
+            this.error = false;
+            if (data.success) {
+              this._router.navigate(['/']).then();
+            } else {
+              this.handleError('SERVICE_ERROR');
+            }
+          },
+          error: (err) => {
+            if (environment.debug) console.error(err);
+            this.error = true;
+            this.error_message_form = {};
+            if (err.status == 400 && err.error.message === 'ValidationFailed') {
+              err.error.errors.forEach((e: any) => {
+                const key = e.property.toLowerCase();
+                if (!this.error_message_form[key]) this.error_message_form[key] = [];
+                this.error_message_form[key].push(e.error);
+              });
+            } else {
+              this.handleError('SERVICE_ERROR');
             }
           }
-        )
+        });
     }
   }
 
-  defineLanguage() {
-    const lang = navigator.language;
-    if (lang === 'fr-FR')
-      return 'fr_FR'
-    else
-      return 'en_US'
+  handleError(message: string) {
+    this.error_message = message;
+    this.error = true;
   }
 
-  passwordHide() {
-    this.hide_show = !this.hide_show;
-  }
 }

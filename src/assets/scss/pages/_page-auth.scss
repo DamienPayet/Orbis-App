@@ -64,7 +64,7 @@
     padding: 50px 50px;
 	@include respond('phone') {
 		padding: 30px;
-	}	
+	}
     .btn{
         height: 50px;
         font-weight: 700;
@@ -82,13 +82,12 @@
 	}
 }
 .login-media{
-	margin-top:80px;
-	img{
+  img{
 		width:70%;
-		
+
 		@include respond ('tab-port'){
 			width:60%;
-			
+
 		}
 	}
 	@include respond ('phone'){
@@ -100,14 +99,14 @@
 		padding-top:70px;
 		text-align:center;
 	p{
-		
+
 		font-size:20px;
 		color:$black;
 		line-height:1.5;
 		margin-left: auto;
 		margin-right: auto;
 		max-width: 500px;
-		
+
 		@include respond ('tab-land'){
 			font-size:20px;
 		}
@@ -118,22 +117,22 @@
 	@include respond ('tab-port'){
 		padding-left:51px;
 		padding-top:40px;
-		
+
 	}
 	@include respond ('phone'){
 		padding-left:14px;
 		padding-top:14px;
 	}
-} 
+}
 .login-form {
     padding: 0 50px;
     max-width: 600px;
     margin: 0 auto;
-	
+
 	@include respond ('tab-port'){
 		padding:25px 25px;
 	}
-	
+
 	@include respond ('phone'){
 		padding:14px 14px;
 	}

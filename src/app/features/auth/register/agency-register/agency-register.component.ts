@@ -48,14 +48,15 @@ export class AgencyRegisterComponent extends Unsubscribable {
       city: new FormControl('', [Validators.required]),
       postalCode: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      businessType: new FormControl('', [Validators.required]),
-      website: new FormControl('', [Validators.required]),
-      logoUrl: new FormControl('', [Validators.required])
+      businessType: new FormControl(''),
+      website: new FormControl(''),
+      logoUrl: new FormControl('')
     });
   }
 
   onSubmit() {
-    if (true) {
+    if (this.registerAgencyForm.valid) {
+      this.error = false;
       this._authManager.registerAgencyRequest(this.registerAgencyForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
@@ -63,7 +64,7 @@ export class AgencyRegisterComponent extends Unsubscribable {
             this.error = false;
             if (data.success) {
               this.success = true;
-              this._router.navigate(['/agency-configuration']).then();
+              this._router.navigate(['/']).then();
             } else {
               this.handleError('SERVICE_ERROR');
             }

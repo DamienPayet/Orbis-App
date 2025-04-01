@@ -54,6 +54,7 @@ export class LoginComponent extends Unsubscribable {
 
   onSubmit() {
     if (this.loginForm.valid) {
+      this.error = false;
       this._authManager.loginRequest(this.loginForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe({

@@ -61,6 +61,27 @@ export interface AgencyRegisterResponse {
     errors: [];
   };
 }
+
+export interface ContentCreatorRegisterRequest {
+  name: string
+  phoneNumber: string
+  country: string
+  city: string
+  postalCode: string
+  address: string
+  businessType: string
+  website: string
+  logoUrl: string
+}
+export interface ContentCreatorRegisterResponse {
+  success: boolean;
+  message: string;
+  error: {
+    success: boolean;
+    message : string
+    errors: [];
+  };
+}
 export interface ForgotPasswordRequest {
   email: string;
 }

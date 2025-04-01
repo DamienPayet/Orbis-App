@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {
   AgencyRegisterRequest,
-  AgencyRegisterResponse,
+  AgencyRegisterResponse, ContentCreatorRegisterRequest, ContentCreatorRegisterResponse,
   ForgotPasswordRequest,
   ForgotPasswordResponse,
   LoginRequest,
@@ -63,11 +63,33 @@ export class AuthenticationManagerService {
     );
   }
 
+  /**
+   * Registers an agency account by sending the provided agency information to the specified endpoint.
+   *
+   * @param {AgencyRegisterRequest} agencyInformation - The data object containing the agency registration details.
+   * @return {Observable<AgencyRegisterResponse>} An observable that emits the response of the agency registration process.
+   */
   registerAgencyRequest(agencyInformation : AgencyRegisterRequest): Observable<AgencyRegisterResponse> {
     return this._httpRequest.postWithCredentials<AgencyRegisterRequest, AgencyRegisterResponse>(endpoints.authEndpoints.registerAgency , agencyInformation).pipe(
       catchError(error => {
         if (environment.debug)
-          console.error('Erreur à l\'enregistement du compte :', error);
+          console.error('Erreur à l\'enregistement de l\'agence :', error);
+        throw error;
+      })
+    );
+  }
+
+  /**
+   * Sends a request to register a content creator using the provided information.
+   *
+   * @param {ContentCreatorRegisterRequest} contentCreatorInformation - The content creator's registration information.
+   * @return {Observable<ContentCreatorRegisterResponse>} An observable that emits the response of the registration operation.
+   */
+  registerContentCreatorRequest(contentCreatorInformation : ContentCreatorRegisterRequest): Observable<ContentCreatorRegisterResponse> {
+    return this._httpRequest.postWithCredentials<ContentCreatorRegisterRequest, ContentCreatorRegisterResponse>(endpoints.authEndpoints.registerContentCreator , contentCreatorInformation).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur à l\'enregistement du créateur de contenu :', error);
         throw error;
       })
     );
@@ -226,7 +248,7 @@ export class AuthenticationManagerService {
       })
     })
   }
-  
+
   /**
    * Redirects the user to the appropriate homepage based on their role.
    * It checks the userRole stored in localStorage and navigates to the corresponding route.
