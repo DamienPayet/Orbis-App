@@ -55,7 +55,7 @@ export class AgencyRegisterComponent extends Unsubscribable {
   }
 
   onSubmit() {
-    if (this.registerAgencyForm.valid) {
+    if (true) {
       this._authManager.registerAgencyRequest(this.registerAgencyForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe({

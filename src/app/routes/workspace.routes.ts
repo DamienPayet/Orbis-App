@@ -9,6 +9,7 @@ export const workspaceRoutes : Route = {
   component: WorkspaceLayoutComponent,
   canActivate: [authenticatedGuard,accountReadyGuard],
   children: [
+    { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent }
   ]
 };

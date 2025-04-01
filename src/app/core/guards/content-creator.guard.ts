@@ -1,10 +1,10 @@
-import {CanActivateChildFn, CanActivateFn, Router} from '@angular/router';
+import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
 import {GuardUserService} from '../services/guard-user.service';
 import {of, take} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-export const adminGuard: CanActivateChildFn = (childRoute, state) => {
+export const contentCreatorGuard: CanActivateFn = (route, state) => {
   const guardUserService = inject(GuardUserService);
   const router = inject(Router);
 
@@ -12,13 +12,13 @@ export const adminGuard: CanActivateChildFn = (childRoute, state) => {
     .pipe(
       take(1),
       map(userData => {
-        if (userData.isAdmin){
+        if (userData.isContentCreator){
           // Using the userData only one time
           guardUserService.resetUserData();
           return true
         }
         else {
-          router.navigate(['/workspace/dashboard'])
+          router.navigate(['/'])
             .then()
           return false
         }

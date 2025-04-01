@@ -4,12 +4,12 @@
       <div class="col-lg-6 col-md-7 col-sm-12 mx-auto align-self-center">
         <div class="login-form">
           <div class="text-center">
-            <h3 class="title">{{ "SIGN_UP_TITLE"| translate }}</h3>
-            <p>{{ "SIGN_UP_MESSAGE_HEADER" | translate }}</p>
+            <h3 class="title">{{ "REGISTER_AGENCY_TITLE"| translate }}</h3>
+            <p>{{ "REGISTER_AGENCY_MESSAGE_HEADER" | translate }}</p>
           </div>
           <form [formGroup]="registerAgencyForm">
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['name'] }">
-              <label class="mb-1 text-dark">{{ "AGENCY_NAME" | translate }}</label>
+              <label class="mb-1 text-dark">{{ "AGENCY_NAME" | translate }} *</label>
               <input type="text" formControlName="name" class="form-control"/>
               @if (error_message_form["name"]) {
                 <ul class="mt-2">
@@ -18,40 +18,40 @@
               }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['legalName'] }">
-              <label class="mb-1 text-dark">{{ "AGENCY_LEGAL_NAME" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['legalname'] }">
+              <label class="mb-1 text-dark">{{ "AGENCY_LEGAL_NAME" | translate }} *</label>
               <input type="text" formControlName="legalName" class="form-control"/>
-              @if (error_message_form["legalName"]) {
+              @if (error_message_form["legalname"]) {
                 <ul class="mt-2">
-                  <li class="text-danger small" *ngFor="let error of error_message_form['legalName']">{{ error }}</li>
+                  <li class="text-danger small" *ngFor="let error of error_message_form['legalname']">{{ error }}</li>
                 </ul>
               }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['taxId'] }">
-              <label class="mb-1 text-dark">{{ "TAX_ID" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['taxid'] }">
+              <label class="mb-1 text-dark">{{ "TAX_ID" | translate }} *</label>
               <input type="text" formControlName="taxId" class="form-control"/>
-              @if (error_message_form["taxId"]) {
+              @if (error_message_form["taxid"]) {
                 <ul class="mt-2">
-                  <li class="text-danger small" *ngFor="let error of error_message_form['taxId']">{{ error }}</li>
+                  <li class="text-danger small" *ngFor="let error of error_message_form['taxid']">{{ error }}</li>
                 </ul>
               }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['registrationNumber'] }">
-              <label class="mb-1 text-dark">{{ "REGISTRATION_NUMBER" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['registrationnumber'] }">
+              <label class="mb-1 text-dark">{{ "REGISTRATION_NUMBER" | translate }} *</label>
               <input type="text" formControlName="registrationNumber" class="form-control"/>
-              @if (error_message_form["registrationNumber"]) {
+              @if (error_message_form["registrationnumber"]) {
                 <ul class="mt-2">
                   <li class="text-danger small"
-                      *ngFor="let error of error_message_form['registrationNumber']">{{ error }}
+                      *ngFor="let error of error_message_form['registrationnumber']">{{ error }}
                   </li>
                 </ul>
               }
             </div>
 
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['email'] }">
-              <label class="mb-1 text-dark">{{ "EMAIL" | translate }}</label>
+              <label class="mb-1 text-dark">{{ "EMAIL" | translate }} *</label>
               <input type="email" formControlName="email" class="form-control"/>
               @if (error_message_form["email"]) {
                 <ul class="mt-2">
@@ -60,49 +60,85 @@
               }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['phoneNumber'] }">
-              <label class="mb-1 text-dark">{{ "PHONE_NUMBER" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['phonenumber'] }">
+              <label class="mb-1 text-dark">{{ "PHONE_NUMBER" | translate }} *</label>
               <input type="text" formControlName="phoneNumber" class="form-control"/>
-              @if (error_message_form["phoneNumber"]) {
+              @if (error_message_form["phonenumber"]) {
                 <ul class="mt-2">
-                  <li class="text-danger small" *ngFor="let error of error_message_form['phoneNumber']">{{ error }}</li>
+                  <li class="text-danger small" *ngFor="let error of error_message_form['phonenumber']">{{ error }}</li>
                 </ul>
               }
             </div>
 
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['country'] }">
-              <label class="mb-1 text-dark">{{ "COUNTRY" | translate }}</label>
+              <label class="mb-1 text-dark">{{ "COUNTRY" | translate }} *</label>
               <input type="text" formControlName="country" class="form-control"/>
+              @if (error_message_form["country"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['country']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['city'] }">
-              <label class="mb-1 text-dark">{{ "CITY" | translate }}</label>
+              <label class="mb-1 text-dark">{{ "CITY" | translate }} *</label>
               <input type="text" formControlName="city" class="form-control"/>
+              @if (error_message_form["city"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['city']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['postalCode'] }">
-              <label class="mb-1 text-dark">{{ "POSTAL_CODE" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['postalcode'] }">
+              <label class="mb-1 text-dark">{{ "POSTAL_CODE" | translate }} *</label>
               <input type="text" formControlName="postalCode" class="form-control"/>
+              @if (error_message_form["postalcode"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['postalcode']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['address'] }">
-              <label class="mb-1 text-dark">{{ "ADDRESS" | translate }}</label>
+              <label class="mb-1 text-dark">{{ "ADDRESS" | translate }} *</label>
               <input type="text" formControlName="address" class="form-control"/>
+              @if (error_message_form["address"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['address']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['businessType'] }">
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['businesstype'] }">
               <label class="mb-1 text-dark">{{ "BUSINESS_TYPE" | translate }}</label>
               <input type="text" formControlName="businessType" class="form-control"/>
+              @if (error_message_form["businesstype"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['businesstype']">{{ error }}
+                  </li>
+                </ul>
+              }
             </div>
 
             <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['website'] }">
               <label class="mb-1 text-dark">{{ "WEBSITE" | translate }}</label>
               <input type="text" formControlName="website" class="form-control"/>
+              @if (error_message_form["website"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['website']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
-            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['logoUrl'] }">
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['logourl'] }">
               <label class="mb-1 text-dark">{{ "LOGO_URL" | translate }}</label>
               <input type="text" formControlName="logoUrl" class="form-control"/>
+              @if (error_message_form["logourl"]) {
+                <ul class="mt-2">
+                  <li class="text-danger small" *ngFor="let error of error_message_form['logourl']">{{ error }}</li>
+                </ul>
+              }
             </div>
 
             @if (error) {
@@ -116,7 +152,7 @@
                       class="btn btn-primary btn-block"
                       [disabled]="registerAgencyForm.invalid"
                       (click)="onSubmit()">
-                {{ "SIGN_UP_BUTTON" | translate }}
+                {{ "VALIDATE_AGENCY-CREATION" | translate }}
               </button>
             </div>
           </form>

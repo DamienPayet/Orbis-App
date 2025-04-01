@@ -54,6 +54,20 @@
   "PASSWORD_RESET_TITLE": "Password Reset",
   "PASSWORD_RESET_MESSAGE_HEADER": "The password has been successfully changed. You can now log in.",
 
+  "REGISTER_AGENCY_TITLE": "Introduce your agency",
+  "REGISTER_AGENCY_MESSAGE_HEADER": "To start using Orbis, we need to know a little more about your agency. Just fill in these details, and you're good to go! 🚀",
+  "AGENCY_NAME": "Agency name",
+  "AGENCY_LEGAL_NAME": "Legal agency name",
+  "TAX_ID": "Tax identification number",
+  "REGISTRATION_NUMBER": "Registration number",
+  "COUNTRY": "Country",
+  "CITY": "City",
+  "POSTAL_CODE": "Postal code",
+  "ADDRESS": "Address",
+  "BUSINESS_TYPE": "Business type",
+  "WEBSITE": "Website",
+  "LOGO_URL": "Logo URL",
+
   "SERVICE_ERROR" : "Temporarily unavailable services"
 
 }

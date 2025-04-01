@@ -1,17 +1,29 @@
 import {CanActivateChildFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
-import {AuthenticationManagerService} from '../../features/auth/services/authentication-manager.service';
+import {GuardUserService} from '../services/guard-user.service';
+import {of, take} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
-export const notLoggedInGuard: CanActivateChildFn = async (route, state) => {
-  const authService = inject(AuthenticationManagerService);
+export const notLoggedInGuard: CanActivateChildFn = (route, state) => {
+  const guardUserService = inject(GuardUserService);
   const router = inject(Router);
 
-  try {
-    const res = await authService.isLogged();
-    if (res)
-      router.navigate(['/workspace/dashboard']);
-    return !res;
-  } catch {
-    return true;
-  }
+  return guardUserService.getUserData()
+    .pipe(
+      take(1),
+      map(userData => {
+        if (!userData.isLogged) {
+          // Using the userData only one time
+          guardUserService.resetUserData();
+          return true
+        } else {
+          router.navigate(['/workspace'])
+            .then()
+          return false
+        }
+      }),
+      catchError(() => {
+        return of(true)
+      })
+    )
 };

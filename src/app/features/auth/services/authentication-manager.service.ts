@@ -146,6 +146,14 @@ export class AuthenticationManagerService {
   }
 
   /**
+   * Fetches the user data from the server corresponding to the current session.
+   *
+   * @return {Promise<UserInfoResponseInterfaces>} A promise that resolves with the user information or rejects with an error.
+   */
+  getUserData(): Observable<UserInfoResponseInterfaces> {
+    return this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me)
+  }
+  /**
    * Determines if the current user has the role of 'Administrator'.
    *
    * @return {Promise<boolean>} A promise that resolves to true if the user's role is 'Administrator', otherwise false.
@@ -218,25 +226,7 @@ export class AuthenticationManagerService {
       })
     })
   }
-
-  /**
-   * Checks if the user is ready based on the user type retrieved from the server.
-   * @return {Promise<boolean>} A promise that resolves with a boolean indicating whether the user type is valid (not empty, null, or undefined).
-   */
-  isReady(): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      this._httpRequest.getWithCredentials<UserInfoResponseInterfaces>(endpoints.usersEndpoint.me).subscribe({
-        next: (data) => {
-          resolve(data.userType != "" && data.userType != null && data.userType != undefined)
-        },
-        error: (error) => {
-          reject(error)
-        }
-      })
-    })
-  }
-
-
+  
   /**
    * Redirects the user to the appropriate homepage based on their role.
    * It checks the userRole stored in localStorage and navigates to the corresponding route.

@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { modelGuard } from './model.guard';
+import { contentCreatorGuard } from './content-creator.guard';
 
-describe('modelGuard', () => {
+describe('contentCreatorGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => modelGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => contentCreatorGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
