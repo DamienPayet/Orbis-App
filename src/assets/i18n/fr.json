@@ -55,21 +55,6 @@
   "PASSWORD_RESET_TITLE": "Mot de passe réinitialisé",
   "PASSWORD_RESET_MESSAGE_HEADER": "Le mot de passe a été correctement modifié. Vous pouvez maintenant vous connecter.",
 
-  "REGISTER_AGENCY_TITLE": "Présentez-nous votre agence",
-  "REGISTER_AGENCY_MESSAGE_HEADER": "Pour commencer à utiliser Orbis, nous avons besoin d'en savoir un peu plus sur votre agence. Remplissez ces quelques informations et c'est parti ! 🚀",
-  "AGENCY_NAME": "Nom de l'agence",
-  "AGENCY_LEGAL_NAME": "Nom légal de l'agence",
-  "TAX_ID": "Numéro d'identification fiscale (Code TVA)",
-  "REGISTRATION_NUMBER": "Numéro d'immatriculation (SIRET)",
-  "COUNTRY": "Pays",
-  "CITY": "Ville",
-  "POSTAL_CODE": "Code postal",
-  "ADDRESS": "Adresse",
-  "BUSINESS_TYPE": "Type d'entreprise",
-  "WEBSITE": "Site web",
-  "LOGO_URL": "URL du logo",
-
-
   "REGISTER_CONTENT_CREATOR_TITLE": "Présentez-nous votre agence",
   "REGISTER_CONTENT_CREATOR_MESSAGE_HEADER": "Pour commencer à utiliser Orbis, nous avons besoin d'en savoir un peu plus sur votre agence. Remplissez ces quelques informations et c'est parti ! 🚀",
   "AGENCY_NAME": "Nom de l'agence",
@@ -90,7 +75,14 @@
   "MODEL_NAME" : "Nom de Modèle",
   "VALIDATE_CONTENT_CREATOR_CREATION": "Valider la création du profil Créateur de contenu",
 
-
+  "EMAIL_VALIDATION_MESSAGE" :  "Vous êtes sur le point de confirmer votre email.",
+  "EMAIL_VALIDATION_BUTTON" : "Valider mon adresse email",
+  "EMAIL_VALIDATED_MESSAGE" :  "Votre email a été correctement validé. Vous pouvez maintenant pleinement profiter de votre application Orbius.",
+  "REDIRECT_HOME_BUTTON" : "Retourner à la page d'accueil",
+  "RESEND_EMAIL_VALIDATION_MESSAGE" : "La validation a échoué. Veuillez soumettre une nouvelle demande de validation.",
+  "RESEND_EMAIL_VALIDATION_BUTTON" : "Renvoyer l'email de validation",
+  "EMAIL_RESEND_SUCCESS" : "L'email de vérification a été renvoyé avec succès.",
+  "RESEND_ERROR_RETRY_LATER" : "Une erreur est survenue. Veuillez réessayer plus tard.",
 
   "SERVICE_ERROR" : "Services temporairement indisponibles"
 

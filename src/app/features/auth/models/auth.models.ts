@@ -13,7 +13,6 @@ export interface LoginResponse {
     userId: string,
     username: string,
     userRole: string,
-    userType: string
   }
 }
 
@@ -97,6 +96,20 @@ export interface ResetPasswordRequest {
 }
 
 export interface ResetPasswordResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface VerifyEmailRequest {
+  token: string;
+  email: string;
+}
+
+export interface VerifyEmailResponse {
+  success: boolean;
+  message: string;
+}
+export interface ResendVerificationEmailResponse {
   success: boolean;
   message: string;
 }

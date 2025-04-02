@@ -1,0 +1,35 @@
+<div class="authincation h-100">
+  <div class="container h-100">
+    <div class="row justify-content-center h-100 align-items-center">
+      <div class="col-md-6">
+        <div class="error-page">
+          <div class="error-inner text-center">
+            <div><img width="400px" src="assets/images/illustrations/email-verify/Email-Verification.png" alt="EMAIL_VALIDATION_LOGO"></div>
+            @if(!validated && !error){
+            <h4 class="error-head">{{"EMAIL_VALIDATION_MESSAGE" | translate}}</h4>
+            <div>
+              <a (click)="onSubmit()" class="btn btn-secondary">{{"EMAIL_VALIDATION_BUTTON" | translate}}</a>
+            </div>
+            }
+            @if(validated){
+              <h4 class="error-head">{{"EMAIL_VALIDATED_MESSAGE" | translate}}</h4>
+              <div>
+                <a routerLink="/"  class="btn btn-secondary">{{"REDIRECT_HOME_BUTTON" | translate}}</a>
+              </div>
+            }
+            @if(error){
+              <h4 *ngIf="!resend_success" class="error-head">{{"RESEND_EMAIL_VALIDATION_MESSAGE" | translate}}</h4>
+              <h4 *ngIf="resend_success" class="error-head">{{"EMAIL_RESEND_SUCCESS" | translate}}</h4>
+              <div>
+                <a *ngIf="!resend_success" (click)="onSubmitResend()" class="btn btn-secondary">{{"RESEND_EMAIL_VALIDATION_BUTTON" | translate}}</a>
+              </div>
+              @if(resend_error){
+              <p class=" text-danger">{{"RESEND_ERROR_RETRY_LATER" | translate}}</p>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

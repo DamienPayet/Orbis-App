@@ -5,11 +5,19 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {
   AgencyRegisterRequest,
-  AgencyRegisterResponse, ContentCreatorRegisterRequest, ContentCreatorRegisterResponse,
+  AgencyRegisterResponse,
+  ContentCreatorRegisterRequest,
+  ContentCreatorRegisterResponse,
   ForgotPasswordRequest,
   ForgotPasswordResponse,
   LoginRequest,
-  LoginResponse, RegisterRequest, RegisterResponse, ResetPasswordRequest, ResetPasswordResponse
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse, ResendVerificationEmailResponse,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
+  VerifyEmailRequest,
+  VerifyEmailResponse
 } from '../models/auth.models';
 import {UserInfoResponseInterfaces} from '../../../core/Interfaces/shared/user-info-response.interfaces';
 import {Router} from '@angular/router';
@@ -168,6 +176,32 @@ export class AuthenticationManagerService {
   }
 
   /**
+   * Verifies the provided email using the given verification parameters.
+   *
+   * @param {VerifyEmailRequest} verificationParams The request object containing email verification details.
+   * @return {Observable<VerifyEmailResponse>} An observable that emits the response of the email verification process or throws an error.
+   */
+  verifyEmail(verificationParams : VerifyEmailRequest){
+    return this._httpRequest.postWithCredentials<VerifyEmailRequest, VerifyEmailResponse>(endpoints.authEndpoints.verifyEmail, verificationParams).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur vérification de l\'email :', error)
+        throw error
+      })
+    )
+  }
+
+  resendEmailVerification(email  : string){
+    return this._httpRequest.postWithCredentials<string, ResendVerificationEmailResponse>(endpoints.authEndpoints.resendVerificationEmail, email).pipe(
+      catchError(error => {
+        if (environment.debug)
+          console.error('Erreur demande  de nouvel envoi du mail de vériification de l\'email :', error)
+        throw error
+      })
+    )
+  }
+
+  /**
    * Fetches the user data from the server corresponding to the current session.
    *
    * @return {Promise<UserInfoResponseInterfaces>} A promise that resolves with the user information or rejects with an error.
@@ -257,20 +291,20 @@ export class AuthenticationManagerService {
    * @return {void} No return value.
    */
   redirectHomePage() {
-    const userType: string | null = localStorage.getItem("userType");
+    const userRole: string | null = localStorage.getItem("userRole");
 
-    if (!userType) {
+    if (!userRole) {
       this._router.navigate(['/auth/login']);
       return;
     }
-    console.log(userType)
-    switch (userType) {
-      case "admin":
-      case "moderator":
+
+    switch (userRole) {
+      case "Administrator":
+      case "Moderator":
         this._router.navigate(['/admin/dashboard']);
         break;
-      case "contentCreator":
-      case "agency":
+      case "ContentCreator":
+      case "Agency":
         this._router.navigate(['/workspace/dashboard']);
         break;
       default:

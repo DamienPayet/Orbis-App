@@ -78,12 +78,11 @@ export class ResetPasswordComponent extends Unsubscribable{
                 this.errorMessage = data.message;
               }
             },
-            error: (error) => {
+            error: () => {
               this.error = true;
               this.errorMessage = "SERVICE_ERROR";
             }
           })
-        console.log(this.resetPasswordForm.value)
       }
     }
   }

@@ -27,6 +27,7 @@
   "SIGN_IN_BUTTON" : "Log In",
   "LOGIN_ERROR": "Email or password invalid",
 
+
   "FORGOT_PASSWORD_TITLE": "Forgot Password",
   "FORGOT_PASSWORD_DESCRIPTION": "Enter your email address to receive a reset link.",
   "NEED_HELP": "Need help?",
@@ -74,6 +75,14 @@
   "MODEL_NAME" : "Model name",
   "VALIDATE_CONTENT_CREATOR_CREATION": "Validate the creation of the Content Creator profile",
 
+  "EMAIL_VALIDATION_MESSAGE" :  "You are about to confirm your email.",
+  "EMAIL_VALIDATION_BUTTON" : "Confirm my email address",
+  "EMAIL_VALIDATED_MESSAGE" : "Your email has been successfully validated. You can now fully enjoy your Orbius application.",
+  "REDIRECT_HOME_BUTTON" : "Return to homepage",
+  "RESEND_EMAIL_VALIDATION_MESSAGE" : "Validation failed, you can resend a validation request.",
+  "RESEND_EMAIL_VALIDATION_BUTTON" :  "Resend validation email",
+  "EMAIL_RESEND_SUCCESS" : "The verification email has been resent successfully.",
+  "RESEND_ERROR_RETRY_LATER" : "An error occurred. Please try again later.",
 
   "SERVICE_ERROR" : "Temporarily unavailable services"
 

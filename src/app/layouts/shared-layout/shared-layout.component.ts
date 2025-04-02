@@ -17,7 +17,7 @@ import {MenuItem} from '../../core/Interfaces/shared/menu-item.interface';
     FooterComponent,
     HeaderComponent],
   templateUrl: './shared-layout.component.html',
-  styleUrls: ['./shared-layout.component.css']
+  styleUrls: ['./shared-layout.component.scss']
 })
 export class SharedLayoutComponent {
   @Input() menuItem: MenuItem[] = [];

@@ -81,7 +81,6 @@ export class LoginComponent extends Unsubscribable {
     localStorage.setItem('userId', response.response!.userId)
     localStorage.setItem('username', response.response!.username)
     localStorage.setItem('userRole', response.response!.userRole)
-    localStorage.setItem('userType', response.response!.userType)
   }
 
 }

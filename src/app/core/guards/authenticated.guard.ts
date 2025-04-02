@@ -12,8 +12,6 @@ export const authenticatedGuard: CanActivateChildFn = (childRoute, state) => {
     .pipe(
       take(1),
       map(userData => {
-        console.log(userData)
-
         if (userData.isLogged){
           // Using the userData only one time
           guardUserService.resetUserData();
