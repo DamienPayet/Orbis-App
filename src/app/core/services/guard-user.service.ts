@@ -30,10 +30,10 @@ export class GuardUserService {
     this.userDataRequest$ = this._authManagerService.getUserData().pipe(
       map(data => ({
         isLogged: true,
-        isContentCreator: data.role === 'CONTENT_CREATOR',
+        isContentCreator: data.role === 'Content_Creator',
         isAdmin: data.role === 'ADMIN',
         isModerator: data.role === 'MODERATOR',
-        isAgency: data.role === 'AGENCY',
+        isAgency: data.role === 'Agency',
         isReady: data.isReady,
         isActive: data.isActive
       })),
@@ -41,7 +41,7 @@ export class GuardUserService {
         this.guardUserSubject.next(userData);
         this.userDataRequest$ = null; // Reset cache after success
       }),
-      catchError(error => {
+      catchError(() => {
         const fallback: GuardUserData = {
           isLogged: false,
           isContentCreator: false,

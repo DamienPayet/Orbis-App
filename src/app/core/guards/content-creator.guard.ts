@@ -4,7 +4,7 @@ import {GuardUserService} from '../services/guard-user.service';
 import {of, take} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-export const contentCreatorGuard: CanActivateFn = (route, state) => {
+export const contentCreatorGuard: CanActivateFn = () => {
   const guardUserService = inject(GuardUserService);
   const router = inject(Router);
 
@@ -16,6 +16,11 @@ export const contentCreatorGuard: CanActivateFn = (route, state) => {
           // Using the userData only one time
           guardUserService.resetUserData();
           return true
+        }
+        else if (userData.isContentCreator){
+          router.navigate(['/workspace-agency'])
+            .then()
+          return false
         }
         else {
           router.navigate(['/'])

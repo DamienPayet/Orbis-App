@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
 import {SharedLayoutComponent} from '../shared-layout/shared-layout.component';
-import {MenuItemAdmin} from '../../Data/admin/menu-item-admin';
+import {MenuItemAdmin} from '../../Data/workspace/menu-item-admin';
 
 
 @Component({

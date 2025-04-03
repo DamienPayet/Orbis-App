@@ -1,11 +1,16 @@
 <div class="nav-header">
   <a routerLink="/admin" class="brand-logo justify-content-center">
+@if(toggleVal){
+  <img src="assets/images/illustrations/Single-White.png"
+       alt="Logo" class="logo"  height="50" width="50">
+}@else{
+  <img src="assets/images/illustrations/Full-Horizontal-White.png"
+       alt="Logo" class="logo desktop-logo" height="50" width="100">
 
-    <img src="assets/images/illustrations/Full-Horizontal-White.png"
-         alt="Logo" class="logo desktop-logo" height="50" width="100">
+  <img src="assets/images/illustrations/Single-White.png"
+       alt="Logo" class="logo mobile-logo"  height="50" width="50">
+    }
 
-    <img src="assets/images/illustrations/Single-White.png"
-         alt="Logo" class="logo mobile-logo"  height="50" width="50">
 
   </a>
   <div class="nav-control" (click)="toggleSidebar()">

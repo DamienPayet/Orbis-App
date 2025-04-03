@@ -4,7 +4,7 @@ import {GuardUserService} from '../services/guard-user.service';
 import {of, take} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-export const notLoggedInGuard: CanActivateChildFn = (route, state) => {
+export const notLoggedInGuard: CanActivateChildFn = () => {
   const guardUserService = inject(GuardUserService);
   const router = inject(Router);
 
@@ -17,7 +17,7 @@ export const notLoggedInGuard: CanActivateChildFn = (route, state) => {
           guardUserService.resetUserData();
           return true
         } else {
-          router.navigate(['/workspace'])
+          router.navigate(['/'])
             .then()
           return false
         }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MenuItemWorspace} from '../../Data/admin/menu-item-worspace';
+import {MenuItemWorspace} from '../../Data/workspace/menu-item-worspace';
 import {SharedLayoutComponent} from '../shared-layout/shared-layout.component';
 
 @Component({

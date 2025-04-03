@@ -1,11 +1,10 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
-import {AuthenticationManagerService} from '../../features/auth/services/authentication-manager.service';
 import {of, take} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {GuardUserService} from '../services/guard-user.service';
 
-export const agencyGuard: CanActivateFn = (childRoute, state) => {
+export const agencyGuard: CanActivateFn = () => {
   const guardUserService = inject(GuardUserService);
   const router = inject(Router);
 
@@ -17,6 +16,11 @@ export const agencyGuard: CanActivateFn = (childRoute, state) => {
           // Using the userData only one time
           guardUserService.resetUserData();
           return true
+        }
+        else if (userData.isContentCreator){
+          router.navigate(['/workspace-content-creator'])
+            .then()
+          return false
         }
         else {
           router.navigate(['/'])
