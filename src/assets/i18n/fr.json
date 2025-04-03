@@ -55,8 +55,8 @@
   "PASSWORD_RESET_TITLE": "Mot de passe réinitialisé",
   "PASSWORD_RESET_MESSAGE_HEADER": "Le mot de passe a été correctement modifié. Vous pouvez maintenant vous connecter.",
 
-  "REGISTER_CONTENT_CREATOR_TITLE": "Présentez-nous votre agence",
-  "REGISTER_CONTENT_CREATOR_MESSAGE_HEADER": "Pour commencer à utiliser Orbis, nous avons besoin d'en savoir un peu plus sur votre agence. Remplissez ces quelques informations et c'est parti ! 🚀",
+  "REGISTER_AGENCY_TITLE": "Présentez-nous votre agence",
+  "REGISTER_AGENCY_MESSAGE_HEADER": "Pour commencer à utiliser Orbis, nous avons besoin d'en savoir un peu plus sur votre agence. Remplissez ces quelques informations et c'est parti ! 🚀",
   "AGENCY_NAME": "Nom de l'agence",
   "AGENCY_LEGAL_NAME": "Nom légal de l'agence",
   "TAX_ID": "Numéro d'identification fiscale (Code TVA)",
