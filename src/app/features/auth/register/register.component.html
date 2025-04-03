@@ -7,64 +7,144 @@
             <h3 class="title">{{ "SIGN_UP_TITLE"| translate }}</h3>
             <p>{{ "SIGN_UP_MESSAGE_HEADER" | translate }}</p>
           </div>
-          <form ngNoForm [action]="url">
-            <div class="mb-4">
-              <label class="mb-1 text-dark">{{ "USERNAME" | translate }}</label>
-              <input type="text" class="form-control form-control" value="">
+          <form [formGroup]="registerForm">
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['username'] }">
+              <label class="mb-1 text-dark">{{ "USERNAME" | translate }} *</label>
+              <input type="text" formControlName="username" class="form-control form-control" value="">
+              @if (error_message_form["username"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['username']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
             </div>
-            <div class="mb-4">
-              <label class="mb-1 text-dark">{{ "EMAIL" | translate }}</label>
-              <input type="email" class="form-control form-control" value="">
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['email'] }">
+              <label class="mb-1 text-dark">{{ "EMAIL" | translate }} *</label>
+              <input type="email" formControlName="email" class="form-control form-control input-group " value="">
+              @if (error_message_form["email"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['email']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
             </div>
-            <div class="mb-4 position-relative">
-              <label class="mb-1 text-dark">{{ "PASSWORD" | translate }}</label>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['firstname'] }">
+              <label class="mb-1 text-dark">{{ "FIRSTNAME" | translate }} *</label>
+              <input type="text" formControlName="firstname" class="form-control form-control" value="">
+              @if (error_message_form["firstname"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['firstname']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
+            </div>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['lastname'] }">
+              <label class="mb-1 text-dark">{{ "LASTNAME" | translate }} *</label>
+              <input type="text" formControlName="lastname" class="form-control form-control" value="">
+              @if (error_message_form["lastname"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['lastname']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
+            </div>
+            <div class="mb-4" [ngClass]="{ 'input-danger': error_message_form['phonenumber'] }">
+              <label class="mb-1 text-dark">{{ "PHONE_NUMBER" | translate }} *</label>
+              <input type="tel" formControlName="phoneNumber" class="form-control form-control" value="">
+              @if (error_message_form["phoneNumber"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['phonenumber']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
+            </div>
+            <div class="mb-4 position-relative" [ngClass]="{ 'input-danger': error_message_form['password'] }">
+              <label class="mb-1 text-dark">{{ "PASSWORD" | translate }} *</label>
               <div class="position-relative">
-                <input type="password" class="form-control" value=""
+                <input type="password" formControlName="password" class="form-control" value=""
                        [type]="hide_show ? 'text' : 'password'">
                 <span class="show-pass eye" (click)="passwordHide()" [ngClass]="{'active':hide_show}">
                   <i class="fa fa-eye-slash"></i>
                   <i class="fa fa-eye"></i>
                 </span>
               </div>
+              @if (error_message_form["password"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['password']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
             </div>
-            <div class="mb-4 position-relative">
-              <label class="mb-1 text-dark">{{ "PASSWORD_CONFIRMATION" | translate }}</label>
+            <div class="mb-4 position-relative" [ngClass]="{ 'input-danger': error_message_form['passwordconfirmation'] }">
+              <label class="mb-1 text-dark">{{ "PASSWORD_CONFIRMATION" | translate }} *</label>
               <div class="position-relative">
-                <input type="password" class="form-control" value=""
+                <input type="password" formControlName="passwordConfirmation" class="form-control" value=""
                        [type]="hide_show ? 'text' : 'password'">
                 <span class="show-pass eye" (click)="passwordHide()" [ngClass]="{'active':hide_show}">
                   <i class="fa fa-eye-slash"></i>
                   <i class="fa fa-eye"></i>
                 </span>
               </div>
+              @if (error_message_form["passwordConfirmation"]) {
+                <div class="mb-4 mt-2">
+                  <ul>
+                    <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['passwordconfirmation']">{{ error }}
+                    </li>
+                  </ul>
+                </div>
+              }
             </div>
             <div class="mb-4 position-relative">
-              <label class="mb-1 text-dark">{{ 'WHO_ARE_YOU' | translate }}</label>
+              <label class="mb-1 text-dark">{{ 'WHO_ARE_YOU' | translate }} *</label>
               <div class="d-flex justify-content-between">
                 <div class="form-check d-inline-block mx-2">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioAgency">
+                  <input class="form-check-input" type="radio" formControlName="accountType" value="Agency"
+                         name="accountType" id="flexRadioAgency">
                   <label class="form-check-label" for="flexRadioAgency">
                     {{ 'AN_AGENCY' | translate }}
                   </label>
                 </div>
                 <div class="form-check d-inline-block">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioModel">
+                  <input class="form-check-input" type="radio" formControlName="accountType" value="ContentCreator"
+                         name="accountType" id="flexRadioModel">
                   <label class="form-check-label" for="flexRadioModel">
                     {{ 'A_MODEL' | translate }}
                   </label>
                 </div>
               </div>
             </div>
-            <div class="form-row d-flex justify-content-between mt-4 mb-2">
-              <div class="mb-4">
-                <div class="form-check custom-checkbox mb-3">
-                  <input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
-                  <label class="form-check-label" for="customCheckBox1">{{ "REMEMBER_PREFERENCE" | translate }}</label>
-                </div>
+            @if (error_message_form["accounttype"]) {
+              <div class="mb-4 mt-2">
+                <ul>
+                  <li class="mb-1 text-danger small" *ngFor="let error of error_message_form['accounttype']">{{ error }}
+                  </li>
+                </ul>
               </div>
-            </div>
+            }
+
+            @if(error){
+              <div class="mb-4 text-center" >
+                <label class="mb-1 text-danger">{{ error_message | translate }}</label>
+              </div>
+            }
+
             <div class="text-center mb-4">
-              <button type="submit" class="btn btn-primary btn-block">{{ "SIGN_UP_BUTTON" | translate }}</button>
+              <button type="submit" (click)="onSubmit()"
+                      [disabled]="registerForm.invalid"
+                      class="btn btn-primary btn-block">{{ "SIGN_UP_BUTTON" | translate }}
+              </button>
             </div>
             <p class="text-center">{{ "ALREADY_REGISTERED" | translate }}
               <a class="btn-link text-primary" routerLink="/auth/login">{{ "SIGN_IN_TITLE" | translate }}</a>
@@ -79,9 +159,9 @@
           </div>
           <div class="login-media text-center">
             @if (theme == 'dark') {
-              <img src="../../../../assets/images/illustrations/logo1-dark.png" alt="LOGIN_PIC">
+              <img src="../../../../assets/images/illustrations/Full-Vertical-White.png" alt="LOGIN_PIC">
             } @else {
-              <img src="../../../../assets/images/illustrations/logo1-lite.png" alt="LOGIN_PIC">
+              <img src="../../../../assets/images/illustrations/Full-Vertical-Dark.png" alt="LOGIN_PIC">
             }
           </div>
         </div>

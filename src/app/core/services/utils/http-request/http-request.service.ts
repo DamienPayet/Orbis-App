@@ -32,6 +32,16 @@ export class HttpRequestService {
     return this._httpClient.get<T>(this._endpoint + path, {params});
   }
 
+  /**
+   * Sends an HTTP GET request to the specified path with credentials set for CORS.
+   *
+   * @param {string} path - The relative URL path for the resource to fetch.
+   * @param {HttpParams} [params=new HttpParams()] - Optional HTTP parameters for the request.
+   * @return {Observable<T>} An observable emitting the response data of type T.
+   */
+  public getWithCredentials<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+    return this._httpClient.get<T>(this._endpoint + path, { withCredentials: true});
+  }
 
   /**
    * Sends an HTTP POST request to the specified path with the given parameters.
@@ -41,8 +51,18 @@ export class HttpRequestService {
    * @return {Observable<R>} An Observable that emits the response of the POST request.
    */
   public post<T,R>(path: string, params: T): Observable<R> {
-    console.log(`POST Request: ${this._endpoint + path}`);
     return this._httpClient.post<R>(this._endpoint + path, this._addDeviceInfo(params));
+  }
+
+  /**
+   * Sends a POST request to the specified path with credentials and additional device information.
+   *
+   * @param path The endpoint path to send the POST request to.
+   * @param params The payload to be sent in the request body.
+   * @return An Observable of the response of type R.
+   */
+  public postWithCredentials<T,R>(path: string, params: T): Observable<R> {
+    return this._httpClient.post<R>(this._endpoint + path, this._addDeviceInfo(params),{withCredentials: true});
   }
 
 
@@ -57,6 +77,18 @@ export class HttpRequestService {
     return this._httpClient.delete<T>(this._endpoint + path, {params});
   }
 
+  /**
+   * Sends a DELETE HTTP request to the specified endpoint with provided query parameters
+   * and includes credentials such as cookies or authentication headers.
+   *
+   * @param {string} path - The relative path of the API endpoint to send the DELETE request to.
+   * @param {HttpParams} [params] - Optional query parameters to be appended to the request. Defaults to an empty HttpParams object if not provided.
+   * @return {Observable<T>} An observable containing the response of the DELETE request.
+   */
+  public deleteWithCredentials<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+    return this._httpClient.delete<T>(this._endpoint + path, {params, withCredentials: true});
+  }
+
 
   /**
    * Updates a resource on the specified path by making an HTTP PUT request.
@@ -67,6 +99,18 @@ export class HttpRequestService {
    */
   public update<T>(path: string, params: FormData): Observable<T> {
     return this._httpClient.put<T>(this._endpoint + path, params);
+  }
+
+  /**
+   * Sends an HTTP PUT request to update a resource at the specified path,
+   * including credentials in the request.
+   *
+   * @param {string} path - The relative path of the resource to be updated.
+   * @param {FormData} params - The form data containing the parameters for the update.
+   * @return {Observable<T>} An Observable representing the HTTP response, resolving to the type T.
+   */
+  public updateWithCredentials<T>(path: string, params: FormData): Observable<T> {
+    return this._httpClient.put<T>(this._endpoint + path, params, {withCredentials: true});
   }
 
 

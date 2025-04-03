@@ -1,0 +1,17 @@
+.desktop-logo {
+  display: block;
+}
+
+.mobile-logo {
+  display: none;
+}
+
+/* Sur mobile, cacher le logo desktop et afficher le logo mobile */
+@media (max-width: 768px) {
+  .desktop-logo {
+    display: none;
+  }
+  .mobile-logo {
+    display: block;
+  }
+}

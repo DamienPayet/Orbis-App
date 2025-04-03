@@ -27,6 +27,7 @@
   "SIGN_IN_BUTTON" : "Log In",
   "LOGIN_ERROR": "Email or password invalid",
 
+
   "FORGOT_PASSWORD_TITLE": "Forgot Password",
   "FORGOT_PASSWORD_DESCRIPTION": "Enter your email address to receive a reset link.",
   "NEED_HELP": "Need help?",
@@ -40,6 +41,51 @@
   "ALREADY_REGISTERED": "Already registered?",
   "WHO_ARE_YOU": "Who are you?",
   "AN_AGENCY": "An Agency",
-  "A_MODEL": "A Model"
+  "A_MODEL": "A Model",
+  "FIRSTNAME" : "First name",
+  "LASTNAME" : "Last name",
+  "PHONE_NUMBER":  "Phone number",
+
+  "RESET_PASSWORD_TITLE": "Password Reset",
+  "RESET_PASSWORD_MESSAGE_HEADER": "Please follow the instructions to reset your password",
+  "RESET_PASSWORD_BUTTON": "Reset the password",
+  "PASSWORD_NOT_MATCH": "Passwords do not match",
+  "PASSWORD_RECOVERED": "Password recovered?",
+
+  "PASSWORD_RESET_TITLE": "Password Reset",
+  "PASSWORD_RESET_MESSAGE_HEADER": "The password has been successfully changed. You can now log in.",
+
+  "REGISTER_AGENCY_TITLE": "Introduce your agency",
+  "REGISTER_AGENCY_MESSAGE_HEADER": "To start using Orbis, we need to know a little more about your agency. Just fill in these details, and you're good to go! 🚀",
+  "AGENCY_NAME": "Agency name",
+  "AGENCY_LEGAL_NAME": "Legal agency name",
+  "TAX_ID": "Tax identification number",
+  "REGISTRATION_NUMBER": "Registration number",
+  "COUNTRY": "Country",
+  "CITY": "City",
+  "POSTAL_CODE": "Postal code",
+  "ADDRESS": "Address",
+  "BUSINESS_TYPE": "Business type",
+  "WEBSITE": "Website",
+  "LOGO_URL": "Logo URL",
+  "VALIDATE_AGENCY-CREATION": "Validate agency creation",
+
+  "REGISTER_CC_TITLE": "Introduce us to your Content Creator profile",
+  "REGISTER_CC_HEADER": "To start using Orbis, we need to know a bit more about your Content Creator profile. Fill in these few details and let's get started! 🚀",
+  "MODEL_NAME" : "Model name",
+  "VALIDATE_CONTENT_CREATOR_CREATION": "Validate the creation of the Content Creator profile",
+
+  "EMAIL_VALIDATION_MESSAGE" :  "You are about to confirm your email.",
+  "EMAIL_VALIDATION_BUTTON" : "Confirm my email address",
+  "EMAIL_VALIDATED_MESSAGE" : "Your email has been successfully validated. You can now fully enjoy your Orbius application.",
+  "REDIRECT_HOME_BUTTON" : "Return to homepage",
+  "RESEND_EMAIL_VALIDATION_MESSAGE" : "Validation failed, you can resend a validation request.",
+  "RESEND_EMAIL_VALIDATION_BUTTON" :  "Resend validation email",
+  "EMAIL_RESEND_SUCCESS" : "The verification email has been resent successfully.",
+  "RESEND_ERROR_RETRY_LATER" : "An error occurred. Please try again later.",
+  "RESEND_ERROR" : "Une erreur est survenue.",
+  "LOGIN_TO_RESEND_BUTTON" : "Log in to request a resend of the activation email",
+
+  "SERVICE_ERROR" : "Temporarily unavailable services"
 
 }
