@@ -22,7 +22,7 @@ export class VerifyEmailComponent extends Unsubscribable{
   error : boolean = false;
   resend_error :boolean = false;
   resend_success :boolean = false;
-  is_logged  : boolean = false;
+  is_logged  : boolean = localStorage.getItem('userId') != null || localStorage.getItem('userId') != "";
   constructor(
     private _activatedRoute : ActivatedRoute,
     private _authManager : AuthenticationManagerService,
