@@ -83,6 +83,8 @@
   "RESEND_EMAIL_VALIDATION_BUTTON" :  "Resend validation email",
   "EMAIL_RESEND_SUCCESS" : "The verification email has been resent successfully.",
   "RESEND_ERROR_RETRY_LATER" : "An error occurred. Please try again later.",
+  "RESEND_ERROR" : "Une erreur est survenue.",
+  "LOGIN_TO_RESEND_BUTTON" : "Log in to request a resend of the activation email",
 
   "SERVICE_ERROR" : "Temporarily unavailable services"
 

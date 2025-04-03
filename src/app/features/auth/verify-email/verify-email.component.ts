@@ -22,6 +22,7 @@ export class VerifyEmailComponent extends Unsubscribable{
   error : boolean = false;
   resend_error :boolean = false;
   resend_success :boolean = false;
+  is_logged  : boolean = false;
   constructor(
     private _activatedRoute : ActivatedRoute,
     private _authManager : AuthenticationManagerService,

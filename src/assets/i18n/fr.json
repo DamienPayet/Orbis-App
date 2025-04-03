@@ -83,6 +83,8 @@
   "RESEND_EMAIL_VALIDATION_BUTTON" : "Renvoyer l'email de validation",
   "EMAIL_RESEND_SUCCESS" : "L'email de vérification a été renvoyé avec succès.",
   "RESEND_ERROR_RETRY_LATER" : "Une erreur est survenue. Veuillez réessayer plus tard.",
+  "RESEND_ERROR" : "Une erreur est survenue.",
+  "LOGIN_TO_RESEND_BUTTON" : "Connectez-vous pour faire une demande de renvoi d'e-mail d'activation",
 
   "SERVICE_ERROR" : "Services temporairement indisponibles"
 

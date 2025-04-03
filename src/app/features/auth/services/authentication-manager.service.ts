@@ -22,6 +22,7 @@ import {
 import {UserInfoResponseInterfaces} from '../../../core/Interfaces/shared/user-info-response.interfaces';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
+import {CookieService} from 'ngx-cookie-service';
 
 /**
  * Service responsible for managing user authentication and role-based redirection.
@@ -34,8 +35,9 @@ import {environment} from '../../../../environments/environment';
 export class AuthenticationManagerService {
 
   constructor(
-    private _httpRequest: HttpRequestService
-    , private _router: Router) {
+    private _httpRequest: HttpRequestService,
+    private _router: Router,
+    private _cookie : CookieService) {
   }
 
 

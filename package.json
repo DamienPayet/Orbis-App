@@ -27,6 +27,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "ng-select2-component": "^17.1.1",
+    "ngx-cookie-service": "^19.1.2",
     "ngx-device-detector": "^9.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",

@@ -17,7 +17,7 @@
                 <a routerLink="/"  class="btn btn-secondary">{{"REDIRECT_HOME_BUTTON" | translate}}</a>
               </div>
             }
-            @if(error){
+            @if(error && is_logged){
               <h4 *ngIf="!resend_success" class="error-head">{{"RESEND_EMAIL_VALIDATION_MESSAGE" | translate}}</h4>
               <h4 *ngIf="resend_success" class="error-head">{{"EMAIL_RESEND_SUCCESS" | translate}}</h4>
               <div>
@@ -26,6 +26,13 @@
               @if(resend_error){
               <p class=" text-danger">{{"RESEND_ERROR_RETRY_LATER" | translate}}</p>
               }
+            }
+            @if(error && !is_logged){
+              <p class=" text-danger">{{"RESEND_ERROR" | translate}}</p>
+
+              <div>
+                <a routerLink="/" class="btn btn-secondary">{{"LOGIN_TO_RESEND_BUTTON" | translate}}</a>
+              </div>
             }
           </div>
         </div>
