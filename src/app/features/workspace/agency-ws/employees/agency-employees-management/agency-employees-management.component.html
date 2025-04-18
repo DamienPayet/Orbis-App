@@ -7,7 +7,7 @@
       <div class="col-xl-12">
         <div class="card">
           <div class="card-body p-0">
-            <app-table-list [table_list]="items"></app-table-list>
+            <app-table-list [table_list]="items" (actionTriggered)="handleTableAction($event)"></app-table-list>
           </div>
         </div>
       </div>

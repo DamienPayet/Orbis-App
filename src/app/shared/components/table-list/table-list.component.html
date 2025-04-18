@@ -2,10 +2,18 @@
   <div class="tbl-caption">
     <h4 class="heading mb-0">{{ table_list.title | translate }}</h4>
     <div>
-      <a class="btn btn-primary btn-sm me-1" data-bs-toggle="offcanvas" href="javascript:vode(0);"
-         (click)="toggleExample()">+ Add Employee</a>
-      <button type="button" class="btn btn-secondary btn-sm" (click)="openCenter(exampleModal1)">+ Invite Employee
-      </button>
+      @if (table_list.buttonPrimary) {
+        <a class="btn btn-primary btn-sm me-1" data-bs-toggle="offcanvas" href="javascript:vode(0);"
+           (click)="toggleExample()">
+          <i *ngIf="table_list.buttonPrimary.icon" class="{{table_list.buttonPrimary.icon}}"></i>
+          {{ table_list.buttonPrimary.text | translate }}</a>
+      }
+      @if (table_list.buttonSecondary) {
+        <button type="button" class="btn btn-secondary btn-sm" (click)="openCenter(exampleModal1)">
+          <i *ngIf="table_list.buttonSecondary.icon" class="{{table_list.buttonSecondary.icon}} m-lg-1"></i>
+          {{ table_list.buttonSecondary.text | translate }}
+        </button>
+      }
     </div>
   </div>
   <table id="empoloyees-tbl" class="table mb-0">
@@ -20,9 +28,9 @@
           </div>
         </th>
       }
-      @for (headerItem of table_list.headerItems; track headerItem.propertyName) {
+      @for (headerItem of table_list.headerItems; track headerItem.key) {
         @if (headerItem.sort) {
-          <th mat-sort-header="{{headerItem.propertyName}}">{{ headerItem.text | translate }}</th>
+          <th mat-sort-header="{{headerItem.key}}">{{ headerItem.text | translate }}</th>
         } @else {
           <th>{{ headerItem.text | translate }}</th>
         }
@@ -40,8 +48,61 @@
               </div>
             </td>
           }
-          @for(element of item.items; track element) {
-            <td>{{ element.text! | translate }}</td>
+          @for (element of item.elements; track element) {
+            @if (element.type == 'image') {
+              <td>
+                <div class="products">
+                  <img src="{{asImage(element.value).image}}" class="avatar avatar-md" alt="avatar"/>
+
+                  <div>
+                    <h6><a
+                      href="{{asImage(element.value).href ?? 'javascript:void(0);'}}">{{ asImage(element.value).textPrimary }}</a>
+                    </h6>
+                    <span>{{ asImage(element.value).textSecondary }}</span>
+                  </div>
+                </div>
+              </td>
+            } @else if (element.type == 'text') {
+              <td><span>{{ asText(element.value).text }}</span></td>
+            } @else if (element.type == 'badge') {
+              <td>
+                <span
+                  class="badge badge-{{asBadge(element.value).severity}} light border-0">{{ asBadge(element.value).text }}</span>
+              </td>
+            } @else if (element.type == 'action') {
+              <td>
+                @if (asAction(element.value).read != null) {
+                  <button
+                    type="button"
+                    class="btn btn-primary me-2"
+                    [routerLink]="asAction(element.value).read?.route || null"
+                    (click)="handleAction('read', item, $event)"
+                  >
+                    <span><i class="fas fa-eye"></i></span>
+                  </button>
+                }
+                @if (asAction(element.value).update != null) {
+                  <button
+                    type="button"
+                    class="btn btn-secondary me-2"
+                    [routerLink]="asAction(element.value).update?.route || null"
+                    (click)="handleAction('update', item, $event)"
+                  >
+                    <span><i class="fa fa-pen"></i></span>
+                  </button>
+                }
+                @if (asAction(element.value).delete != null) {
+                  <button
+                    type="button"
+                    class="btn btn-danger me-2"
+                    [routerLink]="asAction(element.value).delete?.route || null"
+                    (click)="handleAction('delete', item, $event)"
+                  >
+                    <span><i class="fa fa-trash"></i></span>
+                  </button>
+                }
+              </td>
+            }
           }
         </tr>
       }
