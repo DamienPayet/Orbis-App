@@ -7,8 +7,11 @@
   "ERROR_404": "Nous sommes désolés, mais la page que vous recherchez est introuvable.",
   "BACK_HOMEPAGE": "RETOUR À LA PAGE D'ACCUEIL",
 
+
   "DASHBOARD" : "Tableau de bord",
-  "USERS"  : "Utilisateurs",
+  "EMPLOYEES"  : "Employés",
+  "EMPLOYEES_MANAGEMENT" :  "Gestion des employés",
+  "ROLES_MANAGEMENT" : "Gestion des roles",
   "BILLING" : "Facturation",
   "VOUCHER" : "Promotion",
   "AI_SETTINGS" : "Configutation IA",

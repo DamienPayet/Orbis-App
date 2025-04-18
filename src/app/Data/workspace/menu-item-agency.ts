@@ -1,6 +1,6 @@
 ﻿import {MenuItem} from '../../core/Interfaces/shared/menu-item.interface';
 
-export const MenuItemAgencyWorspace : MenuItem[] = [
+export const MenuItemAgencyWorspace: MenuItem[] = [
   {
     title: "DASHBOARD",
     icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house\" viewBox=\"0 0 16 16\">\n" +
@@ -8,16 +8,27 @@ export const MenuItemAgencyWorspace : MenuItem[] = [
       "</svg>",
     subMenu: [],
     route: "",
-    roles : ["Administrator"]
+    roles: ["Administrator"]
   },
   {
-    title: "EMPLOYEE",
+    title: "EMPLOYEES",
     icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-person\" viewBox=\"0 0 16 16\">\n" +
       "  <path d=\"M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z\"/>\n" +
       "</svg>",
-    subMenu: [],
-    route: "",
-    roles : ["Administrator"]
+    subMenu: [
+      {
+        title: "EMPLOYEES_MANAGEMENT",
+        route: "employee/employees",
+        subBadge: false
+      },
+      {
+        title: "ROLES_MANAGEMENT",
+        route: "employee/roles",
+        subBadge: false,
+      },
+    ],
+    route: "employee",
+    roles: ["Administrator"]
   },
   {
     title: "BILLING",
@@ -26,7 +37,7 @@ export const MenuItemAgencyWorspace : MenuItem[] = [
       "</svg>",
     subMenu: [],
     route: "",
-    roles : ["Administrator"]
+    roles: ["Administrator"]
   },
   {
     title: "VOUCHER",
@@ -35,7 +46,7 @@ export const MenuItemAgencyWorspace : MenuItem[] = [
       "</svg>",
     subMenu: [],
     route: "",
-    roles : ["Administrator"]
+    roles: ["Administrator"]
   },
   {
     title: "AI_SETTINGS",
@@ -44,7 +55,7 @@ export const MenuItemAgencyWorspace : MenuItem[] = [
       "</svg>",
     subMenu: [],
     route: "",
-    roles : ["Administrator"]
+    roles: ["Administrator"]
   },
   {
     title: "REPORTING",

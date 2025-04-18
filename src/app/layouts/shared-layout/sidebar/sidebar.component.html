@@ -27,7 +27,7 @@
                         aria-expanded="false"
                     >
                         <div *ngIf="item.icon" class="menu-icon" [innerHtml]="item.icon | safeHtmlSvg"></div>
-                        <span class="nav-text ms-1">{{ item.title }}</span>
+                        <span class="nav-text ms-1">{{ item.title | translate }}</span>
 
                         @if(item.badge){
                             <span class="badge badge-sm badge-danger ms-3">New</span>
@@ -44,7 +44,7 @@
                                     [routerLink]="[subitem.route]"
                                     [ngClass]="{'mm-active': subitem.title == activeSubMenu}"
                                 >
-                                    {{subitem.title}}
+                                    {{subitem.title | translate}}
                                     @if(subitem.subBadge){
                                         <span class="badge badge-sm badge-danger ms-3">New</span>
                                     }
@@ -57,7 +57,7 @@
                                     href="javascript:void(0)"
                                     aria-expanded="false"
                                 >
-                                    {{subitem.title}}
+                                    {{subitem.title | translate}}
                                     @if(subitem.subBadge){
                                         <span class="badge badge-sm badge-danger ms-3">New</span>
                                     }
@@ -73,7 +73,7 @@
                                             [routerLink]="[subSubItem.route]"
                                             [ngClass]="{'mm-active': subSubItem.title == activeSubSubMenu}"
                                         >
-                                            {{subSubItem.title}}
+                                            {{subSubItem.title | translate}}
                                         </a>
                                     </li>
                                     }

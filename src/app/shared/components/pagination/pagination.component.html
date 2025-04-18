@@ -1,0 +1,25 @@
+<nav aria-label="Page navigation example" class="list-pagination">
+    <ul class="pagination mb-2 mb-sm-0">
+      <li class="page-item">
+        <a class="page-link tex" href="#" (click)="pageChange(page > 1 ? page - 1 : 1); $event.preventDefault()">
+          <i class="fa-solid fa-angle-left"></i>
+        </a>
+      </li>
+      
+      <li *ngFor="let _ of counter(totalPage); let i = index; trackBy: trackByFn" class="page-item">
+        <a 
+          class="page-link" 
+          href="#" 
+          (click)="pageChange(i + 1); $event.preventDefault()" 
+          [ngClass]="{'active': (i + 1).toString() === page.toString()}">
+          {{ i + 1 }}
+        </a>
+      </li>
+      
+      <li class="page-item">
+        <a class="page-link tex" href="#" (click)="pageChange(page < totalPage ? page + 1 : totalPage); $event.preventDefault()">
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>

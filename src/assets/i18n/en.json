@@ -8,7 +8,9 @@
   "BACK_HOMEPAGE" : "BACK TO HOMEPAGE",
 
   "DASHBOARD" : "Dashboard",
-  "USERS"  : "Users",
+  "EMPLOYEES"  : "Employees",
+  "EMPLOYEES_MANAGEMENT" :  "Manage employees",
+  "ROLES_MANAGEMENT" : "Manage roles",
   "BILLING" : "Billing",
   "VOUCHER" : "Voucher",
   "AI_SETTINGS" : "IA Settings",
